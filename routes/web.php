@@ -15,6 +15,8 @@ Route::view('/', 'welcome')->middleware('guest');
 Route::get('/auth', 'AuthController@auth')->middleware('guest')->name('login');
 Route::get('/callback', 'AuthController@callback')->middleware('guest');
 
+Route::view('/privacy', 'privacy');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'DashboardController@index');
     Route::post('/dashboard', 'DashboardController@bet');

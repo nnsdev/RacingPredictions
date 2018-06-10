@@ -17,8 +17,9 @@
                             <div class="card-header">
                                 <h3 class="mb-0">Login</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <a href="/auth" class="btn btn-block btn-info btn-lg">Login through Discord</a>
+                                <a href="/privacy" class="btn" target="_blank">Privacy</a>
                             </div>
                         </div>
                     </div>
