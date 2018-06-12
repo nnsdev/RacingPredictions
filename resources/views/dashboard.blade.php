@@ -132,6 +132,7 @@
                         </tr>
                         @endforeach
                     </table>
+                    <a href="/predictions" class="btn btn-primary">Show All</a>
                 </div>
             </div>
         </div>

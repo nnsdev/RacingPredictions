@@ -27,4 +27,5 @@ Route::group(['middleware' => 'auth'], function () {
         \Auth::logout();
         return redirect('/');
     });
+    Route::get('/predictions', 'DashboardController@predictions');
 });

@@ -67,4 +67,11 @@ class DashboardController extends Controller
             }) + 1,
         ]);
     }
+
+    public function predictions()
+    {
+        return view('predictions', [
+            'predictions' => Prediction::latest()->paginate(100),
+        ]);
+    }
 }
