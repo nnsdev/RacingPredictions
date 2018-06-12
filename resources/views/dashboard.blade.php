@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 px-5">
+        <div class="col-md-4 px-5">
             <div class="card">
                 <div class="card-header">
                     Pick your Teams
@@ -82,16 +82,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6 px-5">
-            <div class="card">
-                <div class="card-header">
-                    Top 10
-                </div>
-                <div class="card-body">
-                    Top 10 and the full leaderboard will be shown after the race.
-                </div>
-            </div>
             <div class="card mt-2">
                 <div class="card-header">Search for User</div>
                 <div class="card-body">
@@ -109,6 +99,39 @@
                             <input type="submit" class="btn btn-secondary btn-block" value="Search">
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 px-5">
+            <div class="card">
+                <div class="card-header">
+                    Top 10
+                </div>
+                <div class="card-body">
+                    Top 10 and the full leaderboard will be shown after the race.
+                </div>
+            </div>
+            <div class="card mt-2">
+                <div class="card-header">Latest 5 Picks</div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <td scope="col">User</td>
+                            <td scope="col">LMP1</td>
+                            <td scope="col">LMP2</td>
+                            <td scope="col">GTE Pro</td>
+                            <td scope="col">GTE Am</td>
+                        </tr>
+                        @foreach($latest as $pick)
+                        <tr>
+                            <td><a href="/user/{{ $pick->user_id }}">{{ $pick->user->name }}</a></td>
+                            <td>#{{ $pick->lmp1->car_number }} {{ $pick->lmp1->name }}</td>
+                            <td>#{{ $pick->lmp2->car_number }} {{ $pick->lmp2->name }}</td>
+                            <td>#{{ $pick->gtepro->car_number }} {{ $pick->gtepro->name }}</td>
+                            <td>#{{ $pick->gteam->car_number }} {{ $pick->gteam->name }}</td>
+                        </tr>
+                        @endforeach
+                    </table>
                 </div>
             </div>
         </div>

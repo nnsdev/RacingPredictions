@@ -19,6 +19,7 @@
                             </div>
                             <div class="card-body text-center">
                                 <a href="/auth" class="btn btn-block btn-info btn-lg">Login through Discord</a>
+                                <a href="https://craigsetupshop.co.uk" class="btn" target="_blank">Sponsored by Craig's Setup Shop</a> &middot;
                                 <a href="/privacy" class="btn" target="_blank">Privacy</a>
                             </div>
                         </div>

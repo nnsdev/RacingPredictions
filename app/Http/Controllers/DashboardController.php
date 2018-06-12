@@ -11,7 +11,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        return view('dashboard', [
+            'latest' => Prediction::latest()->take(5)->get(),
+        ]);
     }
 
     public function bet(Request $request)
