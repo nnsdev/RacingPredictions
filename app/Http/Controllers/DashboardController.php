@@ -13,6 +13,12 @@ class DashboardController extends Controller
     {
         return view('dashboard', [
             'latest' => Prediction::latest()->take(5)->get(),
+            'most_picked' => [
+                'lmp1' => Prediction::select('lmp1_id')->groupBy('lmp1_id')->orderByRaw('COUNT(lmp1_id) DESC')->first()->lmp1,
+                'lmp2' => Prediction::select('lmp2_id')->groupBy('lmp2_id')->orderByRaw('COUNT(lmp2_id) DESC')->first()->lmp2,
+                'gtepro' => Prediction::select('gtepro_id')->groupBy('gtepro_id')->orderByRaw('COUNT(gtepro_id) DESC')->first()->gtepro,
+                'gteam' => Prediction::select('gteam_id')->groupBy('gteam_id')->orderByRaw('COUNT(gteam_id) DESC')->first()->gteam,
+            ],
         ]);
     }
 
