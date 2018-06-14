@@ -15,16 +15,12 @@
     </div>
     <div class="row">
         <div class="col-md-4 px-5">
+            @if(now()->lessThan(\Carbon\Carbon::parse("2018-06-16T13:00:00Z")))
             <div class="card">
                 <div class="card-header">
                     Pick your Teams
                 </div>
                 <div class="card-body">
-                    @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-15T13:00:00Z")))
-                    <div class="alert alert-info">
-                        Bets are now closed! Have fun watching the 24!
-                    </div>
-                    @endif
                     @if(Session::has('success'))
                     <div class="alert alert-success">
                         {{ Session::pull('success') }}
@@ -34,7 +30,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="lmp1">LMP1</label>
-                            <select name="lmp1" id="lmp1" class="form-control select2" @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-15T13:00:00Z"))) disabled @endif>
+                            <select name="lmp1" id="lmp1" class="form-control select2">
                                 @foreach(\App\Car::where('class', 'lmp1')->orderBy('car_number', 'ASC')->get() as $car)
                                 <option value="{{ $car->id }}" @if(Auth::user()->betOn($car)) selected @endif>
                                     #{{ $car->car_number }} {{ $car->name }} ({{ $car->car }})
@@ -45,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label for="lmp2">LMP2</label>
-                            <select name="lmp2" id="lmp2" class="form-control select2" @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-15T13:00:00Z"))) disabled @endif>
+                            <select name="lmp2" id="lmp2" class="form-control select2">
                                 @foreach(\App\Car::where('class', 'lmp2')->orderBy('car_number', 'ASC')->get() as $car)
                                 <option value="{{ $car->id }}" @if(Auth::user()->betOn($car)) selected @endif>
                                     #{{ $car->car_number }} {{ $car->name }} ({{ $car->car }})
@@ -56,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label for="gtepro">GTE Pro</label>
-                            <select name="gtepro" id="gtepro" class="form-control select2" @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-15T13:00:00Z"))) disabled @endif>
+                            <select name="gtepro" id="gtepro" class="form-control select2">
                                 @foreach(\App\Car::where('class', 'gtepro')->orderBy('car_number', 'ASC')->get() as $car)
                                 <option value="{{ $car->id }}" @if(Auth::user()->betOn($car)) selected @endif>
                                     #{{ $car->car_number }} {{ $car->name }} ({{ $car->car }})
@@ -67,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <label for="gteam">GTE Am</label>
-                            <select name="gteam" id="gteam" class="form-control select2" @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-15T13:00:00Z"))) disabled @endif>
+                            <select name="gteam" id="gteam" class="form-control select2">
                                 @foreach(\App\Car::where('class', 'gteam')->orderBy('car_number', 'ASC')->get() as $car)
                                 <option value="{{ $car->id }}" @if(Auth::user()->betOn($car)) selected @endif>
                                     #{{ $car->car_number }} {{ $car->name }} ({{ $car->car }})
@@ -82,6 +78,34 @@
                     </form>
                 </div>
             </div>
+            @endif
+            <div class="card mt-2">
+                <div class="card-header">Most favorite teams</div>
+                <div class="card-body">
+                    @if($most_picked['lmp1'])
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3><span class="badge badge-danger">LMP1</span></h3>
+                            <h4>#{{ $most_picked['lmp1']->car_number  }} {{ $most_picked['lmp1']->name }}</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h3><span class="badge badge-danger">LMP2</span></h3>
+                            <h4>#{{ $most_picked['lmp2']->car_number  }} {{ $most_picked['lmp2']->name }}</h4>
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <h3><span class="badge badge-danger">GTE Pro</span></h3>
+                            <h4>#{{ $most_picked['gtepro']->car_number  }} {{ $most_picked['gtepro']->name }}</h4>
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <h3><span class="badge badge-danger">GTE Am</span></h3>
+                            <h4>#{{ $most_picked['gteam']->car_number  }} {{ $most_picked['gteam']->name }}</h4>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 px-5">
             <div class="card mt-2">
                 <div class="card-header">Search for User</div>
                 <div class="card-body">
@@ -101,8 +125,7 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="col-md-8 px-5">
+            @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-17T14:00:00Z")))
             <div class="card">
                 <div class="card-header">
                     Top 10
@@ -111,6 +134,7 @@
                     Top 10 and the full leaderboard will be shown after the race.
                 </div>
             </div>
+            @else
             <div class="card mt-2">
                 <div class="card-header">Latest 5 Picks</div>
                 <div class="card-body">
@@ -135,29 +159,15 @@
                     <a href="/predictions" class="btn btn-primary">Show All</a>
                 </div>
             </div>
+            @endif
+            @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-16T13:00:00Z")) && now()->lessThan(\Carbon\Carbon::parse("2018-06-17T13:30:00Z")))
             <div class="card mt-2">
-                <div class="card-header">Most favorite teams</div>
+                <div class="card-header">Live Data</div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h3><span class="badge badge-danger">LMP1</span></h3>
-                            <h4>#{{ $most_picked['lmp1']->car_number  }} {{ $most_picked['lmp1']->name }}</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <h3><span class="badge badge-danger">LMP2</span></h3>
-                            <h4>#{{ $most_picked['lmp2']->car_number  }} {{ $most_picked['lmp2']->name }}</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <h3><span class="badge badge-danger">GTE Pro</span></h3>
-                            <h4>#{{ $most_picked['gtepro']->car_number  }} {{ $most_picked['gtepro']->name }}</h4>
-                        </div>
-                        <div class="col-md-3">
-                            <h3><span class="badge badge-danger">GTE Am</span></h3>
-                            <h4>#{{ $most_picked['gteam']->car_number  }} {{ $most_picked['gteam']->name }}</h4>
-                        </div>
-                    </div>
+                    <standings></standings>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>

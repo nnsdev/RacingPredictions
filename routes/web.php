@@ -20,12 +20,12 @@ Route::view('/privacy', 'privacy');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'DashboardController@index');
     Route::post('/dashboard', 'DashboardController@bet');
-    Route::post('/dashboard/search', 'DashboardController@search');
-    Route::get('/user/{user}', 'DashboardController@user');
-    //Route::get('/leaderboard', 'DashboardController@leaderboard');
+    Route::post('/dashboard/search', 'UserController@search');
+    Route::get('/user/{user}', 'UserController@user');
+    //Route::get('/leaderboard', 'UserController@leaderboard');
     Route::get('/logout', function () {
         \Auth::logout();
         return redirect('/');
     });
-    Route::get('/predictions', 'DashboardController@predictions');
+    Route::get('/predictions', 'UserController@predictions');
 });

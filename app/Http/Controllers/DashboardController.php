@@ -14,10 +14,10 @@ class DashboardController extends Controller
         return view('dashboard', [
             'latest' => Prediction::latest()->take(5)->get(),
             'most_picked' => [
-                'lmp1' => Prediction::select('lmp1_id')->groupBy('lmp1_id')->orderByRaw('COUNT(lmp1_id) DESC')->first()->lmp1,
-                'lmp2' => Prediction::select('lmp2_id')->groupBy('lmp2_id')->orderByRaw('COUNT(lmp2_id) DESC')->first()->lmp2,
-                'gtepro' => Prediction::select('gtepro_id')->groupBy('gtepro_id')->orderByRaw('COUNT(gtepro_id) DESC')->first()->gtepro,
-                'gteam' => Prediction::select('gteam_id')->groupBy('gteam_id')->orderByRaw('COUNT(gteam_id) DESC')->first()->gteam,
+                'lmp1' => (Prediction::count() > 0) ? Prediction::select('lmp1_id')->groupBy('lmp1_id')->orderByRaw('COUNT(lmp1_id) DESC')->first()->lmp1 : null,
+                'lmp2' => (Prediction::count() > 0) ? Prediction::select('lmp2_id')->groupBy('lmp2_id')->orderByRaw('COUNT(lmp2_id) DESC')->first()->lmp2 : null,
+                'gtepro' => (Prediction::count() > 0) ? Prediction::select('gtepro_id')->groupBy('gtepro_id')->orderByRaw('COUNT(gtepro_id) DESC')->first()->gtepro : null,
+                'gteam' => (Prediction::count() > 0) ? Prediction::select('gteam_id')->groupBy('gteam_id')->orderByRaw('COUNT(gteam_id) DESC')->first()->gteam : null,
             ],
         ]);
     }
@@ -44,40 +44,5 @@ class DashboardController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Your bets have been updated.');
-    }
-
-    public function search(Request $request)
-    {
-        $request->validate(['search' => 'required']);
-
-        $user = User::whereName($request->get('search'))->first();
-
-        if ($user) {
-            return redirect('/user/' . $user->id);
-        }
-        return redirect()->back()->with('error', 'User not found.');
-    }
-
-    public function user(User $user)
-    {
-        return view('user', ['user' => $user]);
-    }
-
-    public function leaderboard()
-    {
-        $users = User::orderBy('points')->join('predictions', 'predictions.user_id', '=', 'users.id')->orderBy('predictions.id');
-        return view('leaderboard', [
-            'users' => $users->paginate(100),
-            'you' => collect($users->get())->search(function ($user) {
-                return $user->id == \Auth::user()->id;
-            }) + 1,
-        ]);
-    }
-
-    public function predictions()
-    {
-        return view('predictions', [
-            'predictions' => Prediction::latest()->paginate(100),
-        ]);
     }
 }

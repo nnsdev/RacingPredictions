@@ -6,3 +6,11 @@
  */
 
 require('./bootstrap');
+
+window.Vue = require('vue');
+
+Vue.component('standings', require('./components/Standings.vue'));
+
+const app = new Vue({
+    el: '#app'
+});
