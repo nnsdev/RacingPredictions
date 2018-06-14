@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\COnsole\Commands\StandingsCommand::class,
+        \App\Console\Commands\StandingsCommand::class,
     ];
 
     /**
