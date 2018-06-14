@@ -44,7 +44,7 @@ class StandingsCommand extends Command
             $db = Car::where('car_number', $car->number)->first();
             if ($db) {
                 $db->update([
-                    'position' => ($category->position) ?? "?",
+                    'position' => $car->categoryPosition ?? "?",
                     'state' => $car->state ?? "IN",
                     'current_driver' => $car->driver ?? "-",
                     'gap_to_leader' => (!$car->classGap) ? "?" : ($car->classGap == "") ? "0" : $car->classGap,
