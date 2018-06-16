@@ -19,7 +19,7 @@ class DashboardController extends Controller
                 'gtepro' => (Prediction::count() > 0) ? Prediction::select('gtepro_id')->groupBy('gtepro_id')->orderByRaw('COUNT(gtepro_id) DESC')->first()->gtepro : null,
                 'gteam' => (Prediction::count() > 0) ? Prediction::select('gteam_id')->groupBy('gteam_id')->orderByRaw('COUNT(gteam_id) DESC')->first()->gteam : null,
             ],
-            'leaderboard' => User::orderBy('points')->join('predictions', 'predictions.user_id', '=', 'users.id')->orderBy('predictions.id')->take(10)->get(),
+            'leaderboard' => User::orderBy('points')->take(10)->get(),
         ]);
     }
 
