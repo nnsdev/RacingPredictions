@@ -39,7 +39,7 @@ class StandingsCommand extends Command
     public function handle()
     {
         $client = new \GuzzleHttp\Client();
-        $res = $client->request('GET', 'https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json');
+        $res = $client->request('GET', 'https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json?_=' . now()->timestamp);
         collect(json_decode($res->getBody())->entries)->each(function ($car) {
             $db = Car::where('car_number', $car->number)->first();
             if ($db) {

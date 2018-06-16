@@ -56,15 +56,21 @@ export default {
     },
     methods: {
         update () {
+        }
+    },
+    mounted () {
+        window.axios.get('/api/standings').then(res => {
+            this.standings = res.data
+        }).catch(err => {
+            console.log(err);
+        })
+        var timer = setInterval(function () {
             window.axios.get('/api/standings').then(res => {
                 this.standings = res.data
             }).catch(err => {
                 console.log(err);
             })
-        }
-    },
-    created () {
-        setInterval(this.update(), 60000)
+        }.bind(this), 60000)
     }
 }
 </script>

@@ -36633,18 +36633,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     methods: {
-        update: function update() {
-            var _this = this;
+        update: function update() {}
+    },
+    mounted: function mounted() {
+        var _this = this;
 
+        console.log('fetch');
+        window.axios.get('/api/standings').then(function (res) {
+            _this.standings = res.data;
+        }).catch(function (err) {
+            console.log(err);
+        });
+        var timer = setInterval(function () {
+            var _this2 = this;
+
+            console.log('fetch');
             window.axios.get('/api/standings').then(function (res) {
-                _this.standings = res.data;
+                _this2.standings = res.data;
+                console.log(_this2.standings);
             }).catch(function (err) {
                 console.log(err);
             });
-        }
-    },
-    created: function created() {
-        setInterval(this.update(), 60000);
+        }.bind(this), 60000);
     }
 });
 
