@@ -133,16 +133,30 @@
                 </div>
             </div>
             @endif
-            @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-17T14:00:00Z")))
-            <div class="card">
+            @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-16T13:00:00Z")))
+            <div class="card mt-2">
                 <div class="card-header">
                     Top 10
                 </div>
                 <div class="card-body">
-                    Top 10 and the full leaderboard will be shown after the race.
+                    <table class="table">
+                        <tr>
+                            <td>#</td>
+                            <td>Name</td>
+                            <td>Points</td>
+                        </tr>
+                        @foreach($leaderboard as $user)
+                        <tr>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td><a href="/user/{{ $user->user_id }}">{{ $user->name }}</a></td>
+                            <td>{{ $user->points }}</td>
+                        </tr>
+                        @endforeach
+                    </table>
+                    <a href="/leaderboard" class="btn btn-primary">Full Leaderboard</a>
                 </div>
             </div>
-            @else
+            @elseif(now()->lessThan(\Carbon\Carbon::parse("2018-06-16T13:00:00Z")))
             <div class="card mt-2">
                 <div class="card-header">Latest 5 Picks</div>
                 <div class="card-body">

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Car;
+use App\Prediction;
 use Illuminate\Console\Command;
 
 class StandingsCommand extends Command
@@ -52,5 +53,6 @@ class StandingsCommand extends Command
                 ]);
             }
         });
+        Prediction::awardPoints();
     }
 }

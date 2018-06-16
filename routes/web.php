@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/dashboard', 'DashboardController@bet');
     Route::post('/dashboard/search', 'UserController@search');
     Route::get('/user/{user}', 'UserController@user');
-    //Route::get('/leaderboard', 'UserController@leaderboard');
+    Route::get('/leaderboard', 'UserController@leaderboard');
     Route::get('/logout', function () {
         \Auth::logout();
         return redirect('/');

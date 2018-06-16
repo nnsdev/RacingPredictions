@@ -33,25 +33,28 @@ class Prediction extends Model
         return $this->belongsTo(Car::class);
     }
 
-    public static function awardPoints()
+    public static function awardPoints($ended = false)
     {
-        $lmp1 = Car::where(['class' => 'lmp1', 'position' => 1])->first();
-        collect(self::where('lmp1_id', $lmp1->id)->get())->each(function ($prediction) {
-            $prediction->update(['lmp1_correct' => true]);
-        });
-        $lmp2 = Car::where(['class' => 'lmp2', 'position' => 1])->first();
-        collect(self::where('lmp2_id', $lmp2->id)->get())->each(function ($prediction) {
-            $prediction->update(['lmp2_correct' => true]);
-        });
-        $gtepro = Car::where(['class' => 'gtepro', 'position' => 1])->first();
-        collect(self::where('gtepro_id', $gtepro->id)->get())->each(function ($prediction) {
-            $prediction->update(['gtepro_correct' => true]);
-        });
-        $gteam = Car::where(['class' => 'gteam', 'position' => 1])->first();
-        collect(self::where('gteam_id', $gteam->id)->get())->each(function ($prediction) {
-            $prediction->update(['gteam_correct' => true]);
-        });
+        if ($ended) {
+            $lmp1 = Car::where(['class' => 'lmp1', 'position' => 1])->first();
+            collect(self::where('lmp1_id', $lmp1->id)->get())->each(function ($prediction) {
+                $prediction->update(['lmp1_correct' => true]);
+            });
+            $lmp2 = Car::where(['class' => 'lmp2', 'position' => 1])->first();
+            collect(self::where('lmp2_id', $lmp2->id)->get())->each(function ($prediction) {
+                $prediction->update(['lmp2_correct' => true]);
+            });
+            $gtepro = Car::where(['class' => 'gtepro', 'position' => 1])->first();
+            collect(self::where('gtepro_id', $gtepro->id)->get())->each(function ($prediction) {
+                $prediction->update(['gtepro_correct' => true]);
+            });
+            $gteam = Car::where(['class' => 'gteam', 'position' => 1])->first();
+            collect(self::where('gteam_id', $gteam->id)->get())->each(function ($prediction) {
+                $prediction->update(['gteam_correct' => true]);
+            });
+        }
         collect(self::all())->each(function ($prediction) {
+            $prediction->user()->update(['points' => 0]);
             $prediction->user()->increment('points', self::pointAmount($prediction->lmp1->position));
             $prediction->user()->increment('points', self::pointAmount($prediction->lmp2->position));
             $prediction->user()->increment('points', self::pointAmount($prediction->gtepro->position));

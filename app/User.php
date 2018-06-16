@@ -37,15 +37,4 @@ class User extends Authenticatable
     {
         return ($this->prediction && ($this->prediction->lmp1_id == $car->id || $this->prediction->lmp2_id == $car->id || $this->prediction->gtepro_id == $car->id || $this->prediction->gteam_id == $car->id));
     }
-
-    public function calculatePoints()
-    {
-        $points = 0;
-        $prediction = $this->prediction;
-        $points += Prediction::pointAmount($prediction->lmp1->position);
-        $points += Prediction::pointAmount($prediction->lmp2->position);
-        $points += Prediction::pointAmount($prediction->gtepro->position);
-        $points += Prediction::pointAmount($prediction->gteam->position);
-        return $points;
-    }
 }
