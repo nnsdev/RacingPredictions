@@ -139,21 +139,7 @@
                     Top 10
                 </div>
                 <div class="card-body">
-                    <table class="table">
-                        <tr>
-                            <td>#</td>
-                            <td>Name</td>
-                            <td>Points</td>
-                        </tr>
-                        @foreach($leaderboard as $user)
-                        <tr @if($user->id == Auth::user()->id) style="background-color: #d3d5d6;" @endif>
-                            <td>{{ $loop->index + 1 }}</td>
-                            <td><a href="/user/{{ $user->id }}">{{ $user->name }}</a></td>
-                            <td>{{ $user->points }}</td>
-                        </tr>
-                        @endforeach
-                    </table>
-                    <a href="/leaderboard" class="btn btn-primary">Full Leaderboard</a>
+                    <leaderboard :userid="{{ Auth::user()->id }}"></leaderboard>
                 </div>
             </div>
             @elseif(now()->lessThan(\Carbon\Carbon::parse("2018-06-16T13:00:00Z")))

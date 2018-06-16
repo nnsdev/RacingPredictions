@@ -54,7 +54,7 @@
                                         <span style="color:red">⨉</span>
                                     @endif
                                 </td>
-                                <td>{{ Auth::user()->points }}</td>
+                                <td>{{ isset(Auth::user()->prediction) ? Auth::user()->points : '-' }}</td>
                             </tr>
                             @endif
                             @foreach($users as $user)
@@ -89,7 +89,7 @@
                                         <span style="color:red">⨉</span>
                                     @endif
                                 </td>
-                                <td>{{ $user->points }}</td>
+                                <td>{{ isset($user->prediction) ? $user->points : '-' }}</td>
                             </tr>
                             @endforeach
                         </tbody>

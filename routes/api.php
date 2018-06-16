@@ -13,9 +13,14 @@ use Illuminate\Http\Request;
 |
  */
 
-Route::middleware('auth:api')->get('/standings', function (Request $request) {
-    return response([
-        'cars' => $request->user()->prediction()->with('lmp1')->with('lmp2')->with('gtepro')->with('gteam')->first(),
-        'points' => $request->user()->points,
-    ]);
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/standings', function (Request $request) {
+        return response([
+            'cars' => $request->user()->prediction()->with('lmp1')->with('lmp2')->with('gtepro')->with('gteam')->first(),
+            'points' => $request->user()->points,
+        ]);
+    });
+    Route::get('/leaderboard', function (Request $request) {
+        return response(\App\User::orderBy('points', 'DESC')->take(10)->get());
+    });
 });

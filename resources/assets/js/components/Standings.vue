@@ -61,7 +61,6 @@ export default {
     methods: {
         update () {
             window.axios.get('/api/standings').then(res => {
-                console.log(res.data)
                 this.standings = res.data.cars
                 this.points = res.data.points
             }).catch(err => {
@@ -73,7 +72,6 @@ export default {
         this.update()
         var timer = setInterval(function () {
             window.axios.get('/api/standings').then(res => {
-                console.log(res.data)
                 this.standings = res.data.cars
                 this.points = res.data.points
             }).catch(err => {
