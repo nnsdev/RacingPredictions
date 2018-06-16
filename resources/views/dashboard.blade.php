@@ -146,7 +146,7 @@
                             <td>Points</td>
                         </tr>
                         @foreach($leaderboard as $user)
-                        <tr>
+                        <tr @if($user->id == Auth::user()->id) style="background-color: #d3d5d6;" @endif>
                             <td>{{ $loop->index + 1 }}</td>
                             <td><a href="/user/{{ $user->user_id }}">{{ $user->name }}</a></td>
                             <td>{{ $user->points }}</td>

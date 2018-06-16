@@ -27,7 +27,7 @@ class UserController extends Controller
 
     public function leaderboard()
     {
-        $users = User::orderBy('points')->join('predictions', 'predictions.user_id', '=', 'users.id')->orderBy('predictions.id');
+        $users = User::orderBy('points', 'DESC')->join('predictions', 'predictions.user_id', '=', 'users.id');
         return view('leaderboard', [
             'users' => $users->paginate(100),
             'you' => collect($users->get())->search(function ($user) {

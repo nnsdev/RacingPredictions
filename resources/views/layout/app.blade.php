@@ -21,9 +21,9 @@
                 <li class="nav-item {{ (Request::path() == 'dashboard') ? 'active' : '' }}">
                     <a class="nav-link" href="/dashboard">Dashboard</a>
                 </li>
-                {{--<li class="nav-item {{ (Request::path() == 'leaderboard') ? 'active' : '' }}">
+                <li class="nav-item {{ (Request::path() == 'leaderboard') ? 'active' : '' }}">
                     <a href="/leaderboard" class="nav-link">Leaderboard</a>
-                </li>--}}
+                </li>
                 <li class="nav-item">
                     <a href="/logout" class="nav-link">Logout</a>
                 </li>

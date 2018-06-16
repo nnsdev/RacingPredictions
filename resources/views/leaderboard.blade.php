@@ -27,28 +27,28 @@
                                 <th scope="row">{{ $you }}</th>
                                 <td>You</td>
                                 <td>
-                                    @if(Auth::user()->prediction->lmp1_correct)
+                                    @if(isset(Auth::user()->prediction->lmp1_correct) && Auth::user()->prediction->lmp1_correct)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if(Auth::user()->prediction->lmp2_correct)
+                                    @if(isset(Auth::user()->prediction->lmp2_correct) && Auth::user()->prediction->lmp2_correct)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if(Auth::user()->prediction->gtepro_correct)
+                                    @if(isset(Auth::user()->prediction->gtepro_correct) && Auth::user()->prediction->gtepro_correct)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if(Auth::user()->prediction->gteam_correct)
+                                    @if(isset(Auth::user()->prediction->gteam_correct) && Auth::user()->prediction->gteam_correct)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
@@ -62,28 +62,28 @@
                                 <th scope="row">{{ ($users->currentPage() -1) * 100 + ($loop->index + 1) }}</th>
                                 <td><a href="/user/{{ $user->id }}">{{ $user->name }}</a></td>
                                 <td>
-                                    @if($user->prediction->lmp1_correct)
+                                    @if(isset($user->prediction->lmp1_correct) && $user->prediction->lmp1_correct)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($user->prediction->lmp2_correct)
+                                    @if(isset($user->prediction->lmp2_correct) && $user->prediction->lmp2_correct)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($user->prediction->gtepro_correct)
+                                    @if(isset($user->prediction->gtepro_correct) && $user->prediction->gtepro_correct)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($user->prediction->gteam_correct)
+                                    @if(isset($user->prediction->gteam_correct) && $user->prediction->gteam_correct)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
