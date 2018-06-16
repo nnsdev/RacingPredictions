@@ -14,5 +14,8 @@ use Illuminate\Http\Request;
  */
 
 Route::middleware('auth:api')->get('/standings', function (Request $request) {
-    return $request->user()->prediction()->with('lmp1')->with('lmp2')->with('gtepro')->with('gteam')->first();
+    return response([
+        'cars' => $request->user()->prediction()->with('lmp1')->with('lmp2')->with('gtepro')->with('gteam')->first(),
+        'points' => $request->user()->calculatePoints(),
+    ]);
 });

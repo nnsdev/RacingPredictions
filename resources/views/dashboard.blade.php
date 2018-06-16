@@ -125,6 +125,14 @@
                     </form>
                 </div>
             </div>
+            @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-16T13:00:00Z")) && now()->lessThan(\Carbon\Carbon::parse("2018-06-17T13:30:00Z")))
+            <div class="card mt-2">
+                <div class="card-header">Live Data</div>
+                <div class="card-body">
+                    <standings></standings>
+                </div>
+            </div>
+            @endif
             @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-17T14:00:00Z")))
             <div class="card">
                 <div class="card-header">
@@ -157,14 +165,6 @@
                         @endforeach
                     </table>
                     <a href="/predictions" class="btn btn-primary">Show All</a>
-                </div>
-            </div>
-            @endif
-            @if(now()->greaterThan(\Carbon\Carbon::parse("2018-06-16T13:00:00Z")) && now()->lessThan(\Carbon\Carbon::parse("2018-06-17T13:30:00Z")))
-            <div class="card mt-2">
-                <div class="card-header">Live Data</div>
-                <div class="card-body">
-                    <standings></standings>
                 </div>
             </div>
             @endif

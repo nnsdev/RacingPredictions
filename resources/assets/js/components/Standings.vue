@@ -1,4 +1,6 @@
 <template>
+<div>
+    <p><strong>Current Points:</strong> {{ points }}</p>
     <table class="table" v-if="standings">
         <thead>
             <tr>
@@ -45,28 +47,35 @@
             </tr>
         </tbody>
     </table>
+</div>
 </template>
 <script>
 export default {
     name: 'standings',
     data: () => {
         return {
-            standings: null
+            standings: null,
+            points: 0
         }
     },
     methods: {
         update () {
+            window.axios.get('/api/standings').then(res => {
+                console.log(res.data)
+                this.standings = res.data.cars
+                this.points = res.data.points
+            }).catch(err => {
+                console.log(err);
+            })
         }
     },
     mounted () {
-        window.axios.get('/api/standings').then(res => {
-            this.standings = res.data
-        }).catch(err => {
-            console.log(err);
-        })
+        this.update()
         var timer = setInterval(function () {
             window.axios.get('/api/standings').then(res => {
-                this.standings = res.data
+                console.log(res.data)
+                this.standings = res.data.cars
+                this.points = res.data.points
             }).catch(err => {
                 console.log(err);
             })

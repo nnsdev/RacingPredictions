@@ -36624,33 +36624,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'standings',
     data: function data() {
         return {
-            standings: null
+            standings: null,
+            points: 0
         };
     },
     methods: {
-        update: function update() {}
+        update: function update() {
+            var _this = this;
+
+            window.axios.get('/api/standings').then(function (res) {
+                console.log(res.data);
+                _this.standings = res.data.cars;
+                _this.points = res.data.points;
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
     },
     mounted: function mounted() {
-        var _this = this;
-
-        console.log('fetch');
-        window.axios.get('/api/standings').then(function (res) {
-            _this.standings = res.data;
-        }).catch(function (err) {
-            console.log(err);
-        });
+        this.update();
         var timer = setInterval(function () {
             var _this2 = this;
 
-            console.log('fetch');
             window.axios.get('/api/standings').then(function (res) {
-                _this2.standings = res.data;
-                console.log(_this2.standings);
+                console.log(res.data);
+                _this2.standings = res.data.cars;
+                _this2.points = res.data.points;
             }).catch(function (err) {
                 console.log(err);
             });
@@ -36666,137 +36673,144 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.standings
-    ? _c("table", { staticClass: "table" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.position))]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                "#" +
-                  _vm._s(
-                    _vm.standings.lmp1.car_number +
-                      " " +
-                      _vm.standings.lmp1.name
-                  )
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.current_driver))]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.standings.lmp1.position == "1"
-                    ? "-"
-                    : _vm.standings.lmp1.gap_to_leader
-                )
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.state))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.last_lap))])
-          ]),
+  return _c("div", [
+    _c("p", [
+      _c("strong", [_vm._v("Current Points:")]),
+      _vm._v(" " + _vm._s(_vm.points))
+    ]),
+    _vm._v(" "),
+    _vm.standings
+      ? _c("table", { staticClass: "table" }, [
+          _vm._m(0),
           _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.position))]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                "#" +
-                  _vm._s(
-                    _vm.standings.lmp2.car_number +
-                      " " +
-                      _vm.standings.lmp2.name
-                  )
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.current_driver))]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.standings.lmp2.position == "1"
-                    ? "-"
-                    : _vm.standings.lmp2.gap_to_leader
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.position))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  "#" +
+                    _vm._s(
+                      _vm.standings.lmp1.car_number +
+                        " " +
+                        _vm.standings.lmp1.name
+                    )
                 )
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.state))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.last_lap))])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.position))]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                "#" +
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.current_driver))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
                   _vm._s(
-                    _vm.standings.gtepro.car_number +
-                      " " +
-                      _vm.standings.gtepro.name
+                    _vm.standings.lmp1.position == "1"
+                      ? "-"
+                      : _vm.standings.lmp1.gap_to_leader
                   )
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.current_driver))]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.standings.gtepro.position == "1"
-                    ? "-"
-                    : _vm.standings.gtepro.gap_to_leader
                 )
-              )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.state))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.last_lap))])
             ]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.state))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.last_lap))])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v(_vm._s(_vm.standings.gteam.position))]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                "#" +
+            _c("tr", [
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.position))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  "#" +
+                    _vm._s(
+                      _vm.standings.lmp2.car_number +
+                        " " +
+                        _vm.standings.lmp2.name
+                    )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.current_driver))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
                   _vm._s(
-                    _vm.standings.gteam.car_number +
-                      " " +
-                      _vm.standings.gteam.name
+                    _vm.standings.lmp2.position == "1"
+                      ? "-"
+                      : _vm.standings.lmp2.gap_to_leader
                   )
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.gteam.current_driver))]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm.standings.gteam.position == "1"
-                    ? "-"
-                    : _vm.standings.gteam.gap_to_leader
                 )
-              )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.state))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.last_lap))])
             ]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.gteam.state))]),
+            _c("tr", [
+              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.position))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  "#" +
+                    _vm._s(
+                      _vm.standings.gtepro.car_number +
+                        " " +
+                        _vm.standings.gtepro.name
+                    )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.current_driver))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.standings.gtepro.position == "1"
+                      ? "-"
+                      : _vm.standings.gtepro.gap_to_leader
+                  )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.state))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.last_lap))])
+            ]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(_vm.standings.gteam.last_lap))])
+            _c("tr", [
+              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.position))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  "#" +
+                    _vm._s(
+                      _vm.standings.gteam.car_number +
+                        " " +
+                        _vm.standings.gteam.name
+                    )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.current_driver))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.standings.gteam.position == "1"
+                      ? "-"
+                      : _vm.standings.gteam.gap_to_leader
+                  )
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.state))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.last_lap))])
+            ])
           ])
         ])
-      ])
-    : _vm._e()
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
