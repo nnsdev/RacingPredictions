@@ -1,7 +1,7 @@
 <template>
 <div>
     <p><strong>Current Points:</strong> {{ points }}</p>
-    <table class="table" v-if="standings">
+    <table class="table table-responsive" v-if="standings">
         <thead>
             <tr>
                 <th>#</th>

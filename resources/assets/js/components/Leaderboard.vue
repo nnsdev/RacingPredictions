@@ -1,12 +1,12 @@
 <template>
     <div>
-        <table class="table">
+        <table class="table table-responsive">
             <tr>
                 <td>#</td>
                 <td>Name</td>
                 <td>Points</td>
             </tr>
-            <tr v-for="(user, index) in leaderboard" :key="user.id" :style="(userid == user.id) ? 'background-color: #d3d5d6;' : ''">
+            <tr v-for="(user, index) in leaderboard" :key="user.id" :class="(userid == user.id) ? 'bg-primary text-white' : ''">
                 <td>{{ index +1 }}</td>
                 <td><a :href="'/user/' + user.id">{{ user.name }}</a></td>
                 <td>{{ user.points }}</td>
