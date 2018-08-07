@@ -19,13 +19,17 @@ Route::view('/privacy', 'privacy');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'DashboardController@index');
-    Route::post('/dashboard', 'DashboardController@bet');
-    Route::post('/dashboard/search', 'UserController@search');
-    Route::get('/user/{user}', 'UserController@user');
-    Route::get('/leaderboard', 'UserController@leaderboard');
+    Route::group(['prefix' => 'race'], function () {
+        Route::get('/{race}', 'RaceController@getIndex')->middleware('race');
+        Route::post('/{race}', 'RaceController@postIndex')->middleware('race');
+        Route::get('/{race}/results', 'RaceController@getResults');
+        Route::get('/{race}/predictions', 'RaceController@getPredictions');
+    });
+    Route::post('/user/search', 'UserController@postSearch');
+    Route::get('/user/{user}', 'UserController@getUser');
+    Route::get('/leaderboard', 'UserController@getLeaderboard');
     Route::get('/logout', function () {
         \Auth::logout();
         return redirect('/');
     });
-    Route::get('/predictions', 'UserController@predictions');
 });

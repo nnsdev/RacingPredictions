@@ -73,7 +73,7 @@ class CarSeeder extends Seeder
             [98, 'Aston Martin Racing', 'Aston Martin Vantage AMR', 'gteam', ['Paul Dalla Lana', 'Pedro Lamy', 'Mathias Lauda']],
             [99, 'Proton Competition', 'Porsche 911 RSR', 'gteam', ['Patrick Long', 'Tim Pappas', 'Spencer Pumpelly']],
         ])->each(function ($car) {
-            \App\Car::firstOrCreate([
+            \App\Models\Car::firstOrCreate([
                 'car_number' => $car[0],
                 'name' => $car[1],
                 'car' => $car[2],

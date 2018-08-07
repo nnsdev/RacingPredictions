@@ -20,7 +20,7 @@
                             <div class="card-body">
                             <p>Please don't judge me for this very short privacy declarement.<br><br>
 
-                                ALL data will be deleted one week after Le Mans, which is the 23rd of June. Nothing will be kept.<br><br>
+                                ALL data will be deleted one week after the WEC season ends.<br><br>
 
                                 The website uses a couple of mandatory cookies so it can work. No data is being sent to any third-party and all data is being stored as safe as possible.<br>
                                 If a data leak happens, I will take action immediately and notify everyone involved. In case of a (highly unlikely, but not impossible) data leak, all data that is being leaked, is your bet, your Discord ID, a link to your Discord avatar, your Discord refresh token and a remember token.<br>

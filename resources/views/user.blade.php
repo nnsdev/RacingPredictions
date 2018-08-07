@@ -13,40 +13,46 @@
                 </div>
             </div>
         </div>
-        @if($user->prediction)
+        @if($predictions)
         <div class="col-md-9 px-5">
             <h1>Picks</h1>
-            <div class="card">
-                <div class="card-header">LMP1</div>
-                <div class="card-body">
-                    @php $lmp1 = \App\Car::findOrFail($user->prediction->lmp1_id); @endphp
-                    <h3>#{{ $lmp1->car_number }} {{ $lmp1->name }}</h3>
-                    <h3 class="small">{{ $lmp1->car }} &middot; Driven by @foreach(json_decode($lmp1->drivers) as $driver) {{ $driver }}{{ (!$loop->last) ? ',' : '' }} @endforeach</h3>
+            <div class="accordion" id="predictions">
+                @foreach($predictions as $prediction)
+                <div class="card">
+                    <div class="card-header" id="header_{{ str_slug($prediction->race->name) }}">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ str_slug($prediction->race->name) }}" aria-expanded="false" aria-controls="collapseOne">
+                            {{ $prediction->race->name }}
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="{{ str_slug($prediction->race->name) }}" class="collapse" aria-labelledby="header_{{ str_slug($prediction->race->name) }}" data-parent="#predictions">
+                        <div class="card-body">
+                            @if($prediction->lmp1)
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h3><span class="badge badge-danger">LMP1</span></h3>
+                                    <h4>{{ $prediction->lmp1->getInfo() }}</h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3><span class="badge badge-danger">LMP2</span></h3>
+                                    <h4>{{ $prediction->lmp2->getInfo() }}</h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3><span class="badge badge-danger">GTE Pro</span></h3>
+                                    <h4>{{ $prediction->gtepro->getInfo() }}</h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3><span class="badge badge-danger">GTE Am</span></h3>
+                                    <h4>{{ $prediction->gteam->getInfo() }}</h4>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="card mt-2">
-                <div class="card-header">LMP2</div>
-                <div class="card-body">
-                    @php $lmp2 = \App\Car::findOrFail($user->prediction->lmp2_id); @endphp
-                    <h3>#{{ $lmp2->car_number }} {{ $lmp2->name }}</h3>
-                    <h3 class="small">{{ $lmp2->car }} &middot; Driven by @foreach(json_decode($lmp2->drivers) as $driver) {{ $driver }}{{ (!$loop->last) ? ',' : '' }} @endforeach</h3>
-                </div>
-            </div>
-            <div class="card mt-2">
-                <div class="card-header">GTE Pro</div>
-                <div class="card-body">
-                    @php $gtepro = \App\Car::findOrFail($user->prediction->gtepro_id); @endphp
-                    <h3>#{{ $gtepro->car_number }} {{ $gtepro->name }}</h3>
-                    <h3 class="small">{{ $gtepro->car }} &middot; Driven by @foreach(json_decode($gtepro->drivers) as $driver) {{ $driver }}{{ (!$loop->last) ? ',' : '' }} @endforeach</h3>
-                </div>
-            </div>
-            <div class="card mt-2">
-                <div class="card-header">GTE Am</div>
-                <div class="card-body">
-                    @php $gteam = \App\Car::findOrFail($user->prediction->gteam_id); @endphp
-                    <h3>#{{ $gteam->car_number }} {{ $gteam->name }}</h3>
-                    <h3 class="small">{{ $gteam->car }} &middot; Driven by @foreach(json_decode($gteam->drivers) as $driver) {{ $driver }}{{ (!$loop->last) ? ',' : '' }} @endforeach</h3>
-                </div>
+                @endforeach
             </div>
         </div>
         @endif

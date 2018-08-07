@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Prediction;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -20,26 +19,24 @@ class UserController extends Controller
         return redirect()->back()->with('error', 'User not found.');
     }
 
-    public function user(User $user)
+    public function getUser(User $user)
     {
-        return view('user', ['user' => $user]);
-    }
-
-    public function leaderboard()
-    {
-        $users = User::orderBy('points', 'DESC');
-        return view('leaderboard', [
-            'users' => $users->paginate(100),
-            'you' => collect($users->get())->search(function ($user) {
-                return $user->id == \Auth::user()->id;
-            }) + 1,
+        return view('user', [
+            'user' => $user,
+            'predictions' => $user->predictions,
         ]);
     }
 
-    public function predictions()
+    public function getLeaderboard()
     {
-        return view('predictions', [
-            'predictions' => Prediction::latest()->paginate(100),
+        $users = collect(User::all())->sortBy(function ($user) {
+            return $user->points;
+        });
+        return view('leaderboard', [
+            'users' => $users->paginate(100),
+            'you' => collect($users)->search(function ($user) {
+                return $user->id == \Auth::user()->id;
+            }) + 1,
         ]);
     }
 }

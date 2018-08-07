@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Car;
+use App\Models\Race;
 use App\Prediction;
 use App\User;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+
     public function index()
+    {
+        return view('dashboard', ['races' => Race::all()]);
+    }
+    public function race()
     {
         return view('dashboard', [
             'latest' => Prediction::latest()->take(5)->get(),
@@ -21,32 +25,5 @@ class DashboardController extends Controller
             ],
             'leaderboard' => User::orderBy('points', 'DESC')->take(10)->get(),
         ]);
-    }
-
-    public function bet(Request $request)
-    {
-        if (now()->lessThan(\Carbon\Carbon::parse("2018-06-16T13:00:00Z"))) {
-            $request->validate([
-                'lmp1' => 'required',
-                'lmp2' => 'required',
-                'gtepro' => 'required',
-                'gteam' => 'required',
-            ]);
-
-            $lmp1 = Car::where(['class' => 'lmp1', 'id' => $request->get('lmp1')])->firstOrFail();
-            $lmp2 = Car::where(['class' => 'lmp2', 'id' => $request->get('lmp2')])->firstOrFail();
-            $gtepro = Car::where(['class' => 'gtepro', 'id' => $request->get('gtepro')])->firstOrFail();
-            $gteam = Car::where(['class' => 'gteam', 'id' => $request->get('gteam')])->firstOrFail();
-
-            $prediction = Prediction::updateOrCreate(['user_id' => \Auth::user()->id], [
-                'lmp1_id' => $lmp1->id,
-                'lmp2_id' => $lmp2->id,
-                'gtepro_id' => $gtepro->id,
-                'gteam_id' => $gteam->id,
-            ]);
-
-            return redirect()->back()->with('success', 'Your bets have been updated.');
-        }
-        return redirect()->back();
     }
 }

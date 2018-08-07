@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -28,13 +28,20 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function prediction()
+    public function predictions()
     {
-        return $this->hasOne(Prediction::class);
+        return $this->hasMany(Prediction::class);
     }
 
     public function betOn(Car $car)
     {
         return ($this->prediction && ($this->prediction->lmp1_id == $car->id || $this->prediction->lmp2_id == $car->id || $this->prediction->gtepro_id == $car->id || $this->prediction->gteam_id == $car->id));
+    }
+
+    public function getPointsAttribute()
+    {
+        return collect($this->predictions)->map(function ($prediction) {
+            return $prediction->points;
+        })->sum();
     }
 }

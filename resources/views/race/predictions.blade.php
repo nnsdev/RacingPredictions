@@ -6,7 +6,7 @@
         <div class="col-md-12 px-5">
             <div class="card">
                 <div class="card-header">
-                    Leaderboard
+                    Predictions for {{ $race->name }}
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -20,18 +20,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($predictions as $prediction)
+                            @foreach($users as $user)
                             <tr>
-                                <td><a href="/user/{{ $prediction->user_id }}">{{ $prediction->user->name }}</a></td>
-                                <td>#{{ $prediction->lmp1->car_number }} {{ $prediction->lmp1->name }}</td>
-                                <td>#{{ $prediction->lmp2->car_number }} {{ $prediction->lmp2->name }}</td>
-                                <td>#{{ $prediction->gtepro->car_number }} {{ $prediction->gtepro->name }}</td>
-                                <td>#{{ $prediction->gteam->car_number }} {{ $prediction->gteam->name }}</td>
+                                <td><a href="/user/{{ $user->user_id }}">{{ $user->user->name }}</a></td>
+                                <td>#{{ $user->lmp1->car_number }} {{ $user->lmp1->name }}</td>
+                                <td>#{{ $user->lmp2->car_number }} {{ $user->lmp2->name }}</td>
+                                <td>#{{ $user->gtepro->car_number }} {{ $user->gtepro->name }}</td>
+                                <td>#{{ $user->gteam->car_number }} {{ $user->gteam->name }}</td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $predictions->links() !!}                
+                    {!! $users->links() !!}                
                 </div>
             </div>
         </div>
