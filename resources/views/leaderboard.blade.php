@@ -18,18 +18,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(Auth::user()->prediction)
+                            @if(Auth::user()->predictions()->count() > 0)
                             <tr style="background-color: #d3d5d6">
                                 <th scope="row">{{ $you }}</th>
                                 <td>You</td>
-                                <td>{{ isset(Auth::user()->prediction) ? Auth::user()->points : '-' }}</td>
+                                <td>{{ (Auth::user()->predictions()->count() > 0) ? Auth::user()->points : 0 }}</td>
                             </tr>
                             @endif
                             @foreach($users as $user)
                             <tr>
                                 <th scope="row">{{ ($users->currentPage() -1) * 100 + ($loop->index + 1) }}</th>
                                 <td><a href="/user/{{ $user->id }}">{{ $user->name }}</a></td>
-                                <td>{{ isset($user->predictions()->count() > 0) ? $user->points : '-' }}</td>
+                                <td>{{ isset($user->predictions()->count() > 0) ? $user->points : 0 }}</td>
                             </tr>
                             @endforeach
                         </tbody>
