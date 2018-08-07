@@ -29,9 +29,10 @@ class UserController extends Controller
 
     public function getLeaderboard()
     {
+        $users = User::orderBy('points', 'DESC');
         return view('leaderboard', [
-            'users' => Users::orderBy('points')->paginate(100),
-            'you' => collect($users)->search(function ($user) {
+            'users' => $users->paginate(100),
+            'you' => collect($users->get())->search(function ($user) {
                 return $user->id == \Auth::user()->id;
             }) + 1,
         ]);
