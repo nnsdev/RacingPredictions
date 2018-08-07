@@ -37,11 +37,4 @@ class User extends Authenticatable
     {
         return ($this->prediction && ($this->prediction->lmp1_id == $car->id || $this->prediction->lmp2_id == $car->id || $this->prediction->gtepro_id == $car->id || $this->prediction->gteam_id == $car->id));
     }
-
-    public function getPointsAttribute()
-    {
-        return collect($this->predictions)->map(function ($prediction) {
-            return $prediction->points;
-        })->sum();
-    }
 }
