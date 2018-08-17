@@ -55,7 +55,7 @@ class Prediction extends Model
 
     public static function awardPoints(Race $race)
     {
-        collect(self::all())->each(function ($prediction) use ($race) {
+        collect(self::where('race_id', $race->id)->get())->each(function ($prediction) use ($race) {
             $points = self::pointAmount($race->cars()->where('car_id', $prediction->lmp1_id)->firstOrFail()->pivot->position);
             $points += self::pointAmount($race->cars()->where('car_id', $prediction->lmp2_id)->firstOrFail()->pivot->position);
             $points += self::pointAmount($race->cars()->where('car_id', $prediction->gtepro_id)->firstOrFail()->pivot->position);

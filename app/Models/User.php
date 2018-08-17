@@ -33,8 +33,12 @@ class User extends Authenticatable
         return $this->hasMany(Prediction::class);
     }
 
-    public function betOn(Car $car)
+    public function getPrediction(Race $race, $class)
     {
-        return ($this->prediction && ($this->prediction->lmp1_id == $car->id || $this->prediction->lmp2_id == $car->id || $this->prediction->gtepro_id == $car->id || $this->prediction->gteam_id == $car->id));
+        $prediction = $this->predictions()->where('race_id', $race->id)->first();
+        if(!$prediction) {
+            return 0;
+        }
+        return $prediction->{$class};
     }
 }
