@@ -36628,22 +36628,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'standings',
+    props: ['race'],
     data: function data() {
         return {
             standings: null,
-            points: 0
+            remaining: 0,
+            state: 'Green Flag',
+            last_update: null
         };
     },
     methods: {
         update: function update() {
             var _this = this;
 
-            window.axios.get('/api/standings').then(function (res) {
-                _this.standings = res.data.cars;
-                _this.points = res.data.points;
+            window.axios.get('/api/standings/' + this.race).then(function (res) {
+                console.log(res);
+                _this.standings = res.data.standings;
+                _this.last_update = res.data.last_update;
+                _this.state = res.data.state;
+                _this.remaining = res.data.remaining;
             }).catch(function (err) {
                 console.log(err);
             });
@@ -36654,9 +36668,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var timer = setInterval(function () {
             var _this2 = this;
 
-            window.axios.get('/api/standings').then(function (res) {
-                _this2.standings = res.data.cars;
-                _this2.points = res.data.points;
+            window.axios.get('/api/standings/' + this.race).then(function (res) {
+                _this2.standings = res.data.standings;
+                _this2.last_update = res.data.last_update;
+                _this2.state = res.data.state;
+                _this2.remaining = res.data.remaining;
             }).catch(function (err) {
                 console.log(err);
             });
@@ -36673,138 +36689,124 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _vm._v("\r\n            State: " + _vm._s(_vm.state) + "\r\n        ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _vm._v(
+          "\r\n            Last update: " +
+            _vm._s(_vm.last_update) +
+            "\r\n        "
+        )
+      ])
+    ]),
+    _vm._v(" "),
     _c("p", [
       _c("strong", [_vm._v("Current Points:")]),
-      _vm._v(" " + _vm._s(_vm.points))
+      _vm._v(" " + _vm._s(_vm.standings.points))
     ]),
     _vm._v(" "),
     _vm.standings
-      ? _c("table", { staticClass: "table" }, [
+      ? _c("table", { staticClass: "table table-responsive" }, [
           _vm._m(0),
           _vm._v(" "),
           _c("tbody", [
             _c("tr", [
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.position))]),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.pivot.position))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.team))]),
               _vm._v(" "),
               _c("td", [
-                _vm._v(
-                  "#" +
-                    _vm._s(
-                      _vm.standings.lmp1.car_number +
-                        " " +
-                        _vm.standings.lmp1.name
-                    )
-                )
+                _vm._v(_vm._s(_vm.standings.lmp1.pivot.current_driver))
               ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.current_driver))]),
               _vm._v(" "),
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    _vm.standings.lmp1.position == "1"
+                    _vm.standings.lmp1.pivot.position == "1"
                       ? "-"
-                      : _vm.standings.lmp1.gap_to_leader
+                      : _vm.standings.lmp1.pivot.gap_to_leader
                   )
                 )
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.state))]),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.pivot.state))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.last_lap))])
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp1.pivot.last_lap))])
             ]),
             _vm._v(" "),
             _c("tr", [
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.position))]),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.pivot.position))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.team))]),
               _vm._v(" "),
               _c("td", [
-                _vm._v(
-                  "#" +
-                    _vm._s(
-                      _vm.standings.lmp2.car_number +
-                        " " +
-                        _vm.standings.lmp2.name
-                    )
-                )
+                _vm._v(_vm._s(_vm.standings.lmp2.pivot.current_driver))
               ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.current_driver))]),
               _vm._v(" "),
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    _vm.standings.lmp2.position == "1"
+                    _vm.standings.lmp2.pivot.position == "1"
                       ? "-"
-                      : _vm.standings.lmp2.gap_to_leader
+                      : _vm.standings.lmp2.pivot.gap_to_leader
                   )
                 )
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.state))]),
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.pivot.state))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.last_lap))])
+              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.pivot.last_lap))])
             ]),
             _vm._v(" "),
             _c("tr", [
-              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.position))]),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.pivot.position))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.team))]),
               _vm._v(" "),
               _c("td", [
-                _vm._v(
-                  "#" +
-                    _vm._s(
-                      _vm.standings.gtepro.car_number +
-                        " " +
-                        _vm.standings.gtepro.name
-                    )
-                )
+                _vm._v(_vm._s(_vm.standings.gtepro.pivot.current_driver))
               ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.current_driver))]),
               _vm._v(" "),
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    _vm.standings.gtepro.position == "1"
+                    _vm.standings.gtepro.pivot.position == "1"
                       ? "-"
-                      : _vm.standings.gtepro.gap_to_leader
+                      : _vm.standings.gtepro.pivot.gap_to_leader
                   )
                 )
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.state))]),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.pivot.state))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.last_lap))])
+              _c("td", [_vm._v(_vm._s(_vm.standings.gtepro.pivot.last_lap))])
             ]),
             _vm._v(" "),
             _c("tr", [
-              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.position))]),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.pivot.position))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.team))]),
               _vm._v(" "),
               _c("td", [
-                _vm._v(
-                  "#" +
-                    _vm._s(
-                      _vm.standings.gteam.car_number +
-                        " " +
-                        _vm.standings.gteam.name
-                    )
-                )
+                _vm._v(_vm._s(_vm.standings.gteam.pivot.current_driver))
               ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.current_driver))]),
               _vm._v(" "),
               _c("td", [
                 _vm._v(
                   _vm._s(
-                    _vm.standings.gteam.position == "1"
+                    _vm.standings.gteam.pivot.position == "1"
                       ? "-"
-                      : _vm.standings.gteam.gap_to_leader
+                      : _vm.standings.gteam.pivot.gap_to_leader
                   )
                 )
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.state))]),
+              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.pivot.state))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.last_lap))])
+              _c("td", [_vm._v(_vm._s(_vm.standings.gteam.pivot.last_lap))])
             ])
           ])
         ])
@@ -36915,7 +36917,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'leaderboard',
-    props: ['userid'],
+    props: ['userid', 'race'],
     data: function data() {
         return {
             leaderboard: null
@@ -36925,7 +36927,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         update: function update() {
             var _this = this;
 
-            window.axios.get('/api/leaderboard').then(function (res) {
+            window.axios.get('/api/leaderboard/' + this.race).then(function (res) {
                 _this.leaderboard = res.data;
             }).catch(function (err) {
                 console.log(err);
@@ -36937,9 +36939,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var timer = setInterval(function () {
             var _this2 = this;
 
-            window.axios.get('/api/leaderboard').then(function (res) {
+            window.axios.get('/api/leaderboard/' + this.race).then(function (res) {
                 _this2.leaderboard = res.data;
-                console.log(_this2.leaderboard);
             }).catch(function (err) {
                 console.log(err);
             });
@@ -36958,7 +36959,7 @@ var render = function() {
   return _c("div", [
     _c(
       "table",
-      { staticClass: "table" },
+      { staticClass: "table table-responsive" },
       [
         _vm._m(0),
         _vm._v(" "),
@@ -36967,7 +36968,7 @@ var render = function() {
             "tr",
             {
               key: user.id,
-              style: _vm.userid == user.id ? "background-color: #d3d5d6;" : ""
+              class: _vm.userid == user.id ? "bg-primary text-white" : ""
             },
             [
               _c("td", [_vm._v(_vm._s(index + 1))]),

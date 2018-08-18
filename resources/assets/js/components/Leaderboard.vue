@@ -18,7 +18,7 @@
 <script>
 export default {
     name: 'leaderboard',
-    props: ['userid'],
+    props: ['userid', 'race'],
     data: () => {
         return {
             leaderboard: null
@@ -26,7 +26,7 @@ export default {
     },
     methods: {
         update () {
-            window.axios.get('/api/leaderboard').then(res => {
+            window.axios.get('/api/leaderboard/' + this.race).then(res => {
                 this.leaderboard = res.data
             }).catch(err => {
                 console.log(err);
@@ -36,7 +36,7 @@ export default {
     mounted () {
         this.update()
         var timer = setInterval(function () {
-            window.axios.get('/api/leaderboard').then(res => {
+            window.axios.get('/api/leaderboard/' + this.race).then(res => {
                 this.leaderboard = res.data
             }).catch(err => {
                 console.log(err);

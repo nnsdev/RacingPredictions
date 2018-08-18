@@ -20,6 +20,17 @@ class Race extends Model
         return $this->hasMany(Prediction::class);
     }
 
+    public function setStateAttribute($value)
+    {
+        if($value == 'red') {
+            $this->attributes['state'] = "Red Flag";
+        } elseif($value == 'green') {
+            $this->attributes['state'] = "Green Flag"; 
+        } else {
+            $this->attributes['state'] = "Checkered Flag";
+        }
+    }
+
     public function getMostPicked()
     {
         if (Prediction::where('race_id', $this->id)->count() > 0) {

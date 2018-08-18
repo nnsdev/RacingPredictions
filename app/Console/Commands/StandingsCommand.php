@@ -42,9 +42,11 @@ class StandingsCommand extends Command
     {
         $client = new \GuzzleHttp\Client();
         $res = $client->request('GET', 'https://storage.googleapis.com/fiawec-prod/assets/live/WEC/__data.json?_=' . now()->timestamp);
-        $race = Race::whereDate('race_start', '<', now())->whereDate('race_end', '>', now())->first();
+        $race = Race::find(getenv('RACE_ID'));
         if($race) {
-            collect(json_decode($res->getBody())->entries)->each(function ($car) use ($race) {
+            $api = json_decode($res->getBody());
+            $race->update(['state' => $api->params->racestate]);
+            collect($api->entries)->each(function ($car) use ($race) {
                 $db = $race->cars()->where('car_number', $car->number)->first();
                 if ($db) {
                     $race->cars()->updateExistingPivot($db->id, [

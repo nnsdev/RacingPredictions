@@ -23,7 +23,7 @@
                     Top 10
                 </div>
                 <div class="card-body">
-                    <leaderboard :userid="{{ Auth::user()->id }}"></leaderboard>
+                    <leaderboard :userid="{{ Auth::user()->id }}" race="{{ $race->id }}"></leaderboard>
                 </div>
             </div>
             @endif
@@ -53,7 +53,7 @@
             <div class="card mt-1">
                 <div class="card-header">Live Data</div>
                 <div class="card-body">
-                    <standings></standings>
+                    <standings race="{{ $race->id }}"></standings>
                 </div>
             </div>
             @endif

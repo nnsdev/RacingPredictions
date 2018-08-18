@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Race;
 use Illuminate\Http\Request;
 
 /*
@@ -14,13 +15,21 @@ use Illuminate\Http\Request;
  */
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/standings', function (Request $request) {
+    Route::get('/standings/{race}', function (Race $race, Request $request) {
+        $prediction = $race->predictions()->where('user_id', $request->user()->id)->first();
         return response([
-            'cars' => $request->user()->prediction()->with('lmp1')->with('lmp2')->with('gtepro')->with('gteam')->first(),
-            'points' => $request->user()->points,
+            'standings' => [
+                'lmp1' => ['team' => $prediction->lmp1->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->lmp1_id)->first()->pivot],
+                'lmp2' => ['team' => $prediction->lmp2->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->lmp2_id)->first()->pivot],
+                'gtepro' => ['team' => $prediction->gtepro->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->gtepro_id)->first()->pivot],
+                'gteam' => ['team' => $prediction->gteam->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->gteam_id)->first()->pivot],
+            ],
+            'remaining' => gmdate('H:i:s', $race->race_end->diffInSeconds(now())),
+            'state' => $race->state,
+            'last_update' => now()->format("H:i:s"), 
         ]);
     });
-    Route::get('/leaderboard', function (Request $request) {
-        return response(\App\User::orderBy('points', 'DESC')->take(10)->get());
+    Route::get('/leaderboard/{race}', function (Race $race, Request $request) {
+        return response($race->predictions()->orderBy('points', 'DESC')->take(10)->get());
     });
 });

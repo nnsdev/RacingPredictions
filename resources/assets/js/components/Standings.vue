@@ -1,6 +1,14 @@
 <template>
 <div>
-    <p><strong>Current Points:</strong> {{ points }}</p>
+    <div class="row">
+        <div class="col-md-6">
+            State: {{ state }}
+        </div>
+        <div class="col-md-6">
+            Last update: {{ last_update }} GMT
+        </div>
+    </div>
+    <p><strong>Current Points:</strong> {{ standings.points }}</p>
     <table class="table table-responsive" v-if="standings">
         <thead>
             <tr>
@@ -14,36 +22,36 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ standings.lmp1.position }}</td>
-                <td>#{{ standings.lmp1.car_number + " " + standings.lmp1.name }}</td>
-                <td>{{ standings.lmp1.current_driver }}</td>
-                <td>{{ standings.lmp1.position == '1' ? '-' : standings.lmp1.gap_to_leader }}</td>
-                <td>{{ standings.lmp1.state }}</td>
-                <td>{{ standings.lmp1.last_lap }}</td>
+                <td>{{ standings.lmp1.pivot.position }}</td>
+                <td>{{ standings.lmp1.team }}</td>
+                <td>{{ standings.lmp1.pivot.current_driver }}</td>
+                <td>{{ standings.lmp1.pivot.position == '1' ? '-' : standings.lmp1.pivot.gap_to_leader }}</td>
+                <td>{{ standings.lmp1.pivot.state }}</td>
+                <td>{{ standings.lmp1.pivot.last_lap }}</td>
             </tr>
             <tr>
-                <td>{{ standings.lmp2.position }}</td>
-                <td>#{{ standings.lmp2.car_number + " " + standings.lmp2.name }}</td>
-                <td>{{ standings.lmp2.current_driver }}</td>
-                <td>{{ standings.lmp2.position == '1' ? '-' : standings.lmp2.gap_to_leader }}</td>
-                <td>{{ standings.lmp2.state }}</td>
-                <td>{{ standings.lmp2.last_lap }}</td>
+                <td>{{ standings.lmp2.pivot.position }}</td>
+                <td>{{ standings.lmp2.team }}</td>
+                <td>{{ standings.lmp2.pivot.current_driver }}</td>
+                <td>{{ standings.lmp2.pivot.position == '1' ? '-' : standings.lmp2.pivot.gap_to_leader }}</td>
+                <td>{{ standings.lmp2.pivot.state }}</td>
+                <td>{{ standings.lmp2.pivot.last_lap }}</td>
             </tr>
             <tr>
-                <td>{{ standings.gtepro.position }}</td>
-                <td>#{{ standings.gtepro.car_number + " " + standings.gtepro.name }}</td>
-                <td>{{ standings.gtepro.current_driver }}</td>
-                <td>{{ standings.gtepro.position == '1' ? '-' : standings.gtepro.gap_to_leader }}</td>
-                <td>{{ standings.gtepro.state }}</td>
-                <td>{{ standings.gtepro.last_lap }}</td>
+                <td>{{ standings.gtepro.pivot.position }}</td>
+                <td>{{ standings.gtepro.team }}</td>
+                <td>{{ standings.gtepro.pivot.current_driver }}</td>
+                <td>{{ standings.gtepro.pivot.position == '1' ? '-' : standings.gtepro.pivot.gap_to_leader }}</td>
+                <td>{{ standings.gtepro.pivot.state }}</td>
+                <td>{{ standings.gtepro.pivot.last_lap }}</td>
             </tr>
             <tr>
-                <td>{{ standings.gteam.position }}</td>
-                <td>#{{ standings.gteam.car_number + " " + standings.gteam.name }}</td>
-                <td>{{ standings.gteam.current_driver }}</td>
-                <td>{{ standings.gteam.position == '1' ? '-' : standings.gteam.gap_to_leader }}</td>
-                <td>{{ standings.gteam.state }}</td>
-                <td>{{ standings.gteam.last_lap }}</td>
+                <td>{{ standings.gteam.pivot.position }}</td>
+                <td>{{ standings.gteam.team }}</td>
+                <td>{{ standings.gteam.pivot.current_driver }}</td>
+                <td>{{ standings.gteam.pivot.position == '1' ? '-' : standings.gteam.pivot.gap_to_leader }}</td>
+                <td>{{ standings.gteam.pivot.state }}</td>
+                <td>{{ standings.gteam.pivot.last_lap }}</td>
             </tr>
         </tbody>
     </table>
@@ -52,17 +60,23 @@
 <script>
 export default {
     name: 'standings',
+    props: ['race'],
     data: () => {
         return {
             standings: null,
-            points: 0
+            remaining: 0,
+            state: 'Green Flag',
+            last_update: null
         }
     },
     methods: {
         update () {
-            window.axios.get('/api/standings').then(res => {
-                this.standings = res.data.cars
-                this.points = res.data.points
+            window.axios.get('/api/standings/' + this.race).then(res => {
+                console.log(res);
+                this.standings = res.data.standings
+                this.last_update = res.data.last_update
+                this.state = res.data.state
+                this.remaining = res.data.remaining
             }).catch(err => {
                 console.log(err);
             })
@@ -71,9 +85,11 @@ export default {
     mounted () {
         this.update()
         var timer = setInterval(function () {
-            window.axios.get('/api/standings').then(res => {
-                this.standings = res.data.cars
-                this.points = res.data.points
+            window.axios.get('/api/standings/' + this.race).then(res => {
+                this.standings = res.data.standings
+                this.last_update = res.data.last_update
+                this.state = res.data.state
+                this.remaining = res.data.remaining
             }).catch(err => {
                 console.log(err);
             })
