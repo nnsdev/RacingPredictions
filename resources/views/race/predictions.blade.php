@@ -23,10 +23,10 @@
                             @foreach($users as $user)
                             <tr>
                                 <td><a href="/user/{{ $user->user_id }}">{{ $user->user->name }}</a></td>
-                                <td>#{{ $user->lmp1->car_number }} {{ $user->lmp1->name }}</td>
-                                <td>#{{ $user->lmp2->car_number }} {{ $user->lmp2->name }}</td>
-                                <td>#{{ $user->gtepro->car_number }} {{ $user->gtepro->name }}</td>
-                                <td>#{{ $user->gteam->car_number }} {{ $user->gteam->name }}</td>
+                                <td>{{ $user->lmp1->getInfo() }}</td>
+                                <td>{{ $user->lmp2->getInfo() }}</td>
+                                <td>{{ $user->gtepro->getInfo() }}</td>
+                                <td>{{ $user->gteam->getInfo() }}</td>
                             </tr>
                             @endforeach
                         </tbody>

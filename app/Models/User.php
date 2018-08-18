@@ -39,6 +39,6 @@ class User extends Authenticatable
         if(!$prediction) {
             return 0;
         }
-        return $prediction->{$class};
+        return $prediction->{$class}->id;
     }
 }
