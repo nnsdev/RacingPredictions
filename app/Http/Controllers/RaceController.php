@@ -57,9 +57,9 @@ class RaceController extends Controller
                 'gteam_id' => $gteam->id,
             ]);
 
-            return back()->with('success', 'Your bets have been updated.');
+            return redirect('/race/'.$race->id)->with('success', 'Your bets have been updated.');
         }
-        return back();
+        return redirect('/race/' . $race->id);
     }
 
     public function getPredictions(Race $race)
