@@ -36698,7 +36698,7 @@ var render = function() {
         _vm._v(
           "\r\n            Last update: " +
             _vm._s(_vm.last_update) +
-            "\r\n        "
+            " GMT\r\n        "
         )
       ])
     ]),
@@ -36974,8 +36974,8 @@ var render = function() {
               _c("td", [_vm._v(_vm._s(index + 1))]),
               _vm._v(" "),
               _c("td", [
-                _c("a", { attrs: { href: "/user/" + user.id } }, [
-                  _vm._v(_vm._s(user.name))
+                _c("a", { attrs: { href: "/user/" + user.user.id } }, [
+                  _vm._v(_vm._s(user.user.name))
                 ])
               ]),
               _vm._v(" "),

@@ -30,6 +30,6 @@ Route::group(['middleware' => 'auth:api'], function () {
         ]);
     });
     Route::get('/leaderboard/{race}', function (Race $race, Request $request) {
-        return response($race->predictions()->orderBy('points', 'DESC')->take(10)->get());
+        return response($race->predictions()->orderBy('points', 'DESC')->with('user')->take(10)->get());
     });
 });

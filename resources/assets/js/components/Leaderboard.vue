@@ -8,7 +8,7 @@
             </tr>
             <tr v-for="(user, index) in leaderboard" :key="user.id" :class="(userid == user.id) ? 'bg-primary text-white' : ''">
                 <td>{{ index +1 }}</td>
-                <td><a :href="'/user/' + user.id">{{ user.name }}</a></td>
+                <td><a :href="'/user/' + user.user.id">{{ user.user.name }}</a></td>
                 <td>{{ user.points }}</td>
             </tr>
         </table>
