@@ -36642,10 +36642,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['race'],
     data: function data() {
         return {
-            standings: null,
+            standings: {},
             remaining: 0,
             state: 'Green Flag',
-            last_update: null
+            last_update: null,
+            points: 0
         };
     },
     methods: {
@@ -36656,6 +36657,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(res);
                 _this.standings = res.data.standings;
                 _this.last_update = res.data.last_update;
+                _this.points = res.data.points;
                 _this.state = res.data.state;
                 _this.remaining = res.data.remaining;
             }).catch(function (err) {
@@ -36671,6 +36673,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.axios.get('/api/standings/' + this.race).then(function (res) {
                 _this2.standings = res.data.standings;
                 _this2.last_update = res.data.last_update;
+                _this2.points = res.data.points;
                 _this2.state = res.data.state;
                 _this2.remaining = res.data.remaining;
             }).catch(function (err) {
@@ -36705,7 +36708,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _c("strong", [_vm._v("Current Points:")]),
-      _vm._v(" " + _vm._s(_vm.standings.points))
+      _vm._v(" " + _vm._s(_vm.points))
     ]),
     _vm._v(" "),
     _vm.standings
@@ -36914,6 +36917,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'leaderboard',
@@ -36957,41 +36964,48 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "table",
-      { staticClass: "table table-responsive" },
-      [
-        _vm._m(0),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "table",
+          { staticClass: "table table-responsive" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._l(_vm.leaderboard, function(user, index) {
+              return _c(
+                "tr",
+                {
+                  key: user.id,
+                  class: _vm.userid == user.id ? "bg-primary text-white" : ""
+                },
+                [
+                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("a", { attrs: { href: "/user/" + user.user.id } }, [
+                      _vm._v(_vm._s(user.user.name))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.points))])
+                ]
+              )
+            })
+          ],
+          2
+        ),
         _vm._v(" "),
-        _vm._l(_vm.leaderboard, function(user, index) {
-          return _c(
-            "tr",
-            {
-              key: user.id,
-              class: _vm.userid == user.id ? "bg-primary text-white" : ""
-            },
-            [
-              _c("td", [_vm._v(_vm._s(index + 1))]),
-              _vm._v(" "),
-              _c("td", [
-                _c("a", { attrs: { href: "/user/" + user.user.id } }, [
-                  _vm._v(_vm._s(user.user.name))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(user.points))])
-            ]
-          )
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "a",
-      { staticClass: "btn btn-primary", attrs: { href: "/leaderboard" } },
-      [_vm._v("Full Leaderboard")]
-    )
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { href: "/race/" + _vm.race + "/results" }
+          },
+          [_vm._v("Full Leaderboard")]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [

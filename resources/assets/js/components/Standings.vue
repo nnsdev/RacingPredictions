@@ -8,7 +8,7 @@
             Last update: {{ last_update }} GMT
         </div>
     </div>
-    <p><strong>Current Points:</strong> {{ standings.points }}</p>
+    <p><strong>Current Points:</strong> {{ points }}</p>
     <table class="table table-responsive" v-if="standings">
         <thead>
             <tr>
@@ -63,10 +63,11 @@ export default {
     props: ['race'],
     data: () => {
         return {
-            standings: null,
+            standings: {},
             remaining: 0,
             state: 'Green Flag',
-            last_update: null
+            last_update: null,
+            points: 0
         }
     },
     methods: {
@@ -75,6 +76,7 @@ export default {
                 console.log(res);
                 this.standings = res.data.standings
                 this.last_update = res.data.last_update
+                this.points = res.data.points
                 this.state = res.data.state
                 this.remaining = res.data.remaining
             }).catch(err => {
@@ -88,6 +90,7 @@ export default {
             window.axios.get('/api/standings/' + this.race).then(res => {
                 this.standings = res.data.standings
                 this.last_update = res.data.last_update
+                this.points = res.data.points
                 this.state = res.data.state
                 this.remaining = res.data.remaining
             }).catch(err => {

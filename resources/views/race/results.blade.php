@@ -32,6 +32,7 @@
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
+                                        <small>({{ $positions["lmp1"] }})</small>
                                     @endif
                                 </td>
                                 <td>
@@ -39,6 +40,7 @@
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
+                                        <small>({{ $positions["lmp2"] }})</small>
                                     @endif
                                 </td>
                                 <td>
@@ -46,6 +48,7 @@
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
+                                        <small>({{ $positions["gtepro"] }})</small>
                                     @endif
                                 </td>
                                 <td>
@@ -53,6 +56,7 @@
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
+                                        <small>({{ $positions["gteam"] }})</small>
                                     @endif
                                 </td>
                                 <td>{{ $positions['points'] }}</td>
@@ -68,6 +72,7 @@
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
+                                        <small>({{ $positions["lmp1"] }})</small>
                                     @endif
                                 </td>
                                 <td>
@@ -75,6 +80,7 @@
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
+                                        <small>({{ $positions["lmp2"] }})</small>
                                     @endif
                                 </td>
                                 <td>
@@ -82,6 +88,7 @@
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
+                                        <small>({{ $positions["gtepro"] }})</small>
                                     @endif
                                 </td>
                                 <td>
@@ -89,6 +96,7 @@
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
+                                        <small>({{ $positions["gteam"] }})</small>
                                     @endif
                                 </td>
                                 <td>{{ $positions['points'] }}</td>

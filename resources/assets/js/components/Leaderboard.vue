@@ -1,18 +1,22 @@
 <template>
     <div>
-        <table class="table table-responsive">
-            <tr>
-                <td>#</td>
-                <td>Name</td>
-                <td>Points</td>
-            </tr>
-            <tr v-for="(user, index) in leaderboard" :key="user.id" :class="(userid == user.id) ? 'bg-primary text-white' : ''">
-                <td>{{ index +1 }}</td>
-                <td><a :href="'/user/' + user.user.id">{{ user.user.name }}</a></td>
-                <td>{{ user.points }}</td>
-            </tr>
-        </table>
-        <a href="/leaderboard" class="btn btn-primary">Full Leaderboard</a>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-responsive">
+                    <tr>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Points</td>
+                    </tr>
+                    <tr v-for="(user, index) in leaderboard" :key="user.id" :class="(userid == user.id) ? 'bg-primary text-white' : ''">
+                        <td>{{ index +1 }}</td>
+                        <td><a :href="'/user/' + user.user.id">{{ user.user.name }}</a></td>
+                        <td>{{ user.points }}</td>
+                    </tr>
+                </table>
+                <a :href="'/race/' + race + '/results'" class="btn btn-primary">Full Leaderboard</a>
+            </div>
+        </div>
     </div>
 </template>
 <script>
