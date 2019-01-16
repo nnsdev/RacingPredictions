@@ -12,12 +12,10 @@ class RaceSeeder extends Seeder
     public function run()
     {
         collect([
-            ['24h Le Mans 2018', $this->timestamp(1529155800), $this->timestamp(1529242200)],
-            ['6h of Silverstone', $this->timestamp(1534680000), $this->timestamp(1534701600)],
-            ['6h of Fuji'],
-            ['6h of Shanghai'],
-            ['1000 miles of Sebring'],
-            ['24h Le Mans 2019', $this->timestamp(1560605400), $this->timestamp(1560691800)],
+            ['Daytona 24 2019', $this->timestamp(1548531300), $this->timestamp(1548617700)],
+            ['Twelve Hours of Sebring', $this->timestamp(1552750200), $this->timestamp(1552775400)],
+            ['Six Hours of the Glen' , $this->timestamp(1561905000), $this->timestamp(1561926600)],
+            ['Petit Le Mans', $this->timestamp(1570899600), $this->timestamp(1570935600)],
         ])->each(function ($race) {
             \App\Models\Race::firstOrCreate([
                 'name' => $race[0],

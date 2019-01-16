@@ -14,10 +14,10 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">LMP1 Correct</th>
+                                <th scope="col">DPi Correct</th>
                                 <th scope="col">LMP2 Correct</th>
-                                <th scope="col">GTE Pro Correct</th>
-                                <th scope="col">GTE Am Correct</th>
+                                <th scope="col">GTLM Correct</th>
+                                <th scope="col">GTD Correct</th>
                                 <th scope="col">Points</th>
                             </tr>
                         </thead>
@@ -28,11 +28,11 @@
                                 <td>You</td>
                                 @php $positions = \App\Models\Prediction::getFinishingPositions($race, Auth::user()); @endphp
                                 <td>
-                                    @if($positions["lmp1"] == 1)
+                                    @if($positions["dpi"] == 1)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
-                                        <small>({{ $positions["lmp1"] }})</small>
+                                        <small>({{ $positions["dpi"] }})</small>
                                     @endif
                                 </td>
                                 <td>
@@ -44,19 +44,19 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($positions["gtepro"] == 1)
+                                    @if($positions["gtlm"] == 1)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
-                                        <small>({{ $positions["gtepro"] }})</small>
+                                        <small>({{ $positions["gtlm"] }})</small>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($positions["gteam"] == 1)
+                                    @if($positions["gtd"] == 1)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
-                                        <small>({{ $positions["gteam"] }})</small>
+                                        <small>({{ $positions["gtd"] }})</small>
                                     @endif
                                 </td>
                                 <td>{{ $positions['points'] }}</td>
@@ -68,11 +68,11 @@
                                 <td><a href="/user/{{ $user->user->id }}">{{ $user->user->name }}</a></td>
                                 @php $positions = \App\Models\Prediction::getFinishingPositions($race, $user->user); @endphp
                                 <td>
-                                    @if($positions["lmp1"] == 1)
+                                    @if($positions["dpi"] == 1)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
-                                        <small>({{ $positions["lmp1"] }})</small>
+                                        <small>({{ $positions["dpi"] }})</small>
                                     @endif
                                 </td>
                                 <td>
@@ -84,19 +84,19 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if($positions["gtepro"] == 1)
+                                    @if($positions["gtlm"] == 1)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
-                                        <small>({{ $positions["gtepro"] }})</small>
+                                        <small>({{ $positions["gtlm"] }})</small>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($positions["gteam"] == 1)
+                                    @if($positions["gtd"] == 1)
                                         <span style="color: green">✓</span>
                                     @else
                                         <span style="color:red">⨉</span>
-                                        <small>({{ $positions["gteam"] }})</small>
+                                        <small>({{ $positions["gtd"] }})</small>
                                     @endif
                                 </td>
                                 <td>{{ $positions['points'] }}</td>
@@ -104,7 +104,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $users->links() !!}                
+                    {!! $users->links() !!}
                 </div>
             </div>
         </div>

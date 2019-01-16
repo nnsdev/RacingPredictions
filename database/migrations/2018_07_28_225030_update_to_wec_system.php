@@ -17,10 +17,10 @@ class UpdateToWecSystem extends Migration
             $table->integer('race_id')->unsigned()->after('id')->default(1);
             $table->foreign('race_id')->references('id')->on('races');
             $table->integer('points')->after('user_id')->default(0);
-            $table->dropColumn('lmp1_correct');
+            $table->dropColumn('dpi_correct');
             $table->dropColumn('lmp2_correct');
-            $table->dropColumn('gtepro_correct');
-            $table->dropColumn('gteam_correct');
+            $table->dropColumn('gtelm_correct');
+            $table->dropColumn('gtd_correct');
 
         });
         Schema::table('users', function (Blueprint $table) {
@@ -45,10 +45,10 @@ class UpdateToWecSystem extends Migration
         Schema::table('predictions', function (Blueprint $table) {
             $table->dropColumn('race_id');
             $table->dropColumn('points');
-            $table->boolean('lmp1_correct')->default(false);
+            $table->boolean('dpi_correct')->default(false);
             $table->boolean('lmp2_correct')->default(false);
-            $table->boolean('gtepro_correct')->default(false);
-            $table->boolean('gteam_correct')->default(false);
+            $table->boolean('gtelm_correct')->default(false);
+            $table->boolean('gtd_correct')->default(false);
         });
         Schema::table('users', function (Blueprint $table) {
             $table->integer('points')->after('avatar')->default(0);

@@ -22,12 +22,12 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ standings.lmp1.pivot.position }}</td>
-                <td>{{ standings.lmp1.team }}</td>
-                <td>{{ standings.lmp1.pivot.current_driver }}</td>
-                <td>{{ standings.lmp1.pivot.position == '1' ? '-' : standings.lmp1.pivot.gap_to_leader }}</td>
-                <td>{{ standings.lmp1.pivot.state }}</td>
-                <td>{{ standings.lmp1.pivot.last_lap }}</td>
+                <td>{{ standings.dpi.pivot.position }}</td>
+                <td>{{ standings.dpi.team }}</td>
+                <td>{{ standings.dpi.pivot.current_driver }}</td>
+                <td>{{ standings.dpi.pivot.position == '1' ? '-' : standings.dpi.pivot.gap_to_leader }}</td>
+                <td>{{ standings.dpi.pivot.state }}</td>
+                <td>{{ standings.dpi.pivot.last_lap }}</td>
             </tr>
             <tr>
                 <td>{{ standings.lmp2.pivot.position }}</td>
@@ -38,20 +38,20 @@
                 <td>{{ standings.lmp2.pivot.last_lap }}</td>
             </tr>
             <tr>
-                <td>{{ standings.gtepro.pivot.position }}</td>
-                <td>{{ standings.gtepro.team }}</td>
-                <td>{{ standings.gtepro.pivot.current_driver }}</td>
-                <td>{{ standings.gtepro.pivot.position == '1' ? '-' : standings.gtepro.pivot.gap_to_leader }}</td>
-                <td>{{ standings.gtepro.pivot.state }}</td>
-                <td>{{ standings.gtepro.pivot.last_lap }}</td>
+                <td>{{ standings.gtlm.pivot.position }}</td>
+                <td>{{ standings.gtlm.team }}</td>
+                <td>{{ standings.gtlm.pivot.current_driver }}</td>
+                <td>{{ standings.gtlm.pivot.position == '1' ? '-' : standings.gtlm.pivot.gap_to_leader }}</td>
+                <td>{{ standings.gtlm.pivot.state }}</td>
+                <td>{{ standings.gtlm.pivot.last_lap }}</td>
             </tr>
             <tr>
-                <td>{{ standings.gteam.pivot.position }}</td>
-                <td>{{ standings.gteam.team }}</td>
-                <td>{{ standings.gteam.pivot.current_driver }}</td>
-                <td>{{ standings.gteam.pivot.position == '1' ? '-' : standings.gteam.pivot.gap_to_leader }}</td>
-                <td>{{ standings.gteam.pivot.state }}</td>
-                <td>{{ standings.gteam.pivot.last_lap }}</td>
+                <td>{{ standings.gtd.pivot.position }}</td>
+                <td>{{ standings.gtd.team }}</td>
+                <td>{{ standings.gtd.pivot.current_driver }}</td>
+                <td>{{ standings.gtd.pivot.position == '1' ? '-' : standings.gtd.pivot.gap_to_leader }}</td>
+                <td>{{ standings.gtd.pivot.state }}</td>
+                <td>{{ standings.gtd.pivot.last_lap }}</td>
             </tr>
         </tbody>
     </table>

@@ -19,10 +19,10 @@ Route::group(['middleware' => 'auth:api'], function () {
         $prediction = $race->predictions()->where('user_id', $request->user()->id)->first();
         return response([
             'standings' => [
-                'lmp1' => ['team' => $prediction->lmp1->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->lmp1_id)->first()->pivot],
+                'dpi' => ['team' => $prediction->dpi->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->dpi_id)->first()->pivot],
                 'lmp2' => ['team' => $prediction->lmp2->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->lmp2_id)->first()->pivot],
-                'gtepro' => ['team' => $prediction->gtepro->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->gtepro_id)->first()->pivot],
-                'gteam' => ['team' => $prediction->gteam->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->gteam_id)->first()->pivot],
+                'gtlm' => ['team' => $prediction->gtlm->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->gtlm_id)->first()->pivot],
+                'gtd' => ['team' => $prediction->gtd->getInfo(), 'pivot' => $race->cars()->where('car_id', $prediction->gtd_id)->first()->pivot],
             ],
             'remaining' => gmdate('H:i:s', $race->race_end->diffInSeconds(now())),
             'state' => $race->state,

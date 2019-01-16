@@ -39,22 +39,22 @@ class RaceController extends Controller
     {
         if (now()->lessThan($race->race_start)) {
             $request->validate([
-                'lmp1' => 'required',
+                'dpi' => 'required',
                 'lmp2' => 'required',
-                'gtepro' => 'required',
-                'gteam' => 'required',
+                'gtlm' => 'required',
+                'gtd' => 'required',
             ]);
 
-            $lmp1 = Car::where(['class' => 'lmp1', 'id' => $request->get('lmp1')])->firstOrFail();
+            $dpi = Car::where(['class' => 'dpi', 'id' => $request->get('dpi')])->firstOrFail();
             $lmp2 = Car::where(['class' => 'lmp2', 'id' => $request->get('lmp2')])->firstOrFail();
-            $gtepro = Car::where(['class' => 'gtepro', 'id' => $request->get('gtepro')])->firstOrFail();
-            $gteam = Car::where(['class' => 'gteam', 'id' => $request->get('gteam')])->firstOrFail();
+            $gtlm = Car::where(['class' => 'gtlm', 'id' => $request->get('gtlm')])->firstOrFail();
+            $gtd = Car::where(['class' => 'gtd', 'id' => $request->get('gtd')])->firstOrFail();
 
             $prediction = $race->predictions()->updateOrCreate(['user_id' => \Auth::user()->id], [
-                'lmp1_id' => $lmp1->id,
+                'dpi_id' => $dpi->id,
                 'lmp2_id' => $lmp2->id,
-                'gtepro_id' => $gtepro->id,
-                'gteam_id' => $gteam->id,
+                'gtlm_id' => $gtlm->id,
+                'gtd_id' => $gtd->id,
             ]);
 
             return redirect('/race/'.$race->id)->with('success', 'Your bets have been updated.');

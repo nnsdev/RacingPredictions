@@ -22,11 +22,11 @@ class Race extends Model
 
     public function setStateAttribute($value)
     {
-        if($value == 'red') {
+        if ($value == 'red') {
             $this->attributes['state'] = "Red Flag";
-        } elseif($value == 'green') {
-            $this->attributes['state'] = "Green Flag"; 
-        } elseif($value == 'safety_car') {
+        } elseif ($value == 'green') {
+            $this->attributes['state'] = "Green Flag";
+        } elseif ($value == 'safety_car') {
             $this->attributes['state'] = "Safety Car";
         } else {
             $this->attributes['state'] = "Checkered Flag";
@@ -37,13 +37,13 @@ class Race extends Model
     {
         if (Prediction::where('race_id', $this->id)->count() > 0) {
             return [
-                'lmp1' => Prediction::where('race_id', $this->id)->select('lmp1_id')->groupBy('lmp1_id')->orderByRaw('COUNT(lmp1_id) DESC')->first()->lmp1,
+                'dpi' => Prediction::where('race_id', $this->id)->select('dpi_id')->groupBy('dpi_id')->orderByRaw('COUNT(dpi_id) DESC')->first()->dpi,
                 'lmp2' => Prediction::where('race_id', $this->id)->select('lmp2_id')->groupBy('lmp2_id')->orderByRaw('COUNT(lmp2_id) DESC')->first()->lmp2,
-                'gtepro' => Prediction::where('race_id', $this->id)->select('gtepro_id')->groupBy('gtepro_id')->orderByRaw('COUNT(gtepro_id) DESC')->first()->gtepro,
-                'gteam' => Prediction::where('race_id', $this->id)->select('gteam_id')->groupBy('gteam_id')->orderByRaw('COUNT(gteam_id) DESC')->first()->gteam,
+                'gtlm' => Prediction::where('race_id', $this->id)->select('gtlm_id')->groupBy('gtlm_id')->orderByRaw('COUNT(gtlm_id) DESC')->first()->gtlm,
+                'gtd' => Prediction::where('race_id', $this->id)->select('gtd_id')->groupBy('gtd_id')->orderByRaw('COUNT(gtd_id) DESC')->first()->gtd,
             ];
         }
-        return ['lmp1' => null, 'lmp2' => null, 'gtepro' => null, 'gteam' => null];
+        return ['dpi' => null, 'lmp2' => null, 'gtlm' => null, 'gtd' => null];
     }
 
     public function getLeaderboard()

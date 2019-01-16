@@ -12,10 +12,10 @@
         <form method="POST">
             @csrf
             <div class="form-group">
-                <label for="lmp1">LMP1</label>
-                <select name="lmp1" id="lmp1" class="form-control select2">
-                    @foreach($race->cars()->where('class', 'lmp1')->orderBy('car_number', 'ASC')->get() as $car)
-                    <option value="{{ $car->id }}" {{ (Auth::user()->getPrediction($race, 'lmp1') == $car->id) ? 'selected' : '' }}>
+                <label for="dpi">DPi</label>
+                <select name="dpi" id="dpi" class="form-control select2">
+                    @foreach($race->cars()->where('class', 'dpi')->orderBy('car_number', 'ASC')->get() as $car)
+                    <option value="{{ $car->id }}" {{ (Auth::user()->getPrediction($race, 'dpi') == $car->id) ? 'selected' : '' }}>
                         {{ $car->getInfo() }} ({{ $car->car }})
                         (@foreach(json_decode($car->drivers) as $driver){{ $driver}}{{ (!$loop->last) ? ', ' : '' }}@endforeach)
                     </option>
@@ -34,10 +34,10 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="gtepro">GTE Pro</label>
-                <select name="gtepro" id="gtepro" class="form-control select2">
-                    @foreach($race->cars()->where('class', 'gtepro')->orderBy('car_number', 'ASC')->get() as $car)
-                    <option value="{{ $car->id }}" {{ (Auth::user()->getPrediction($race, 'gtepro') == $car->id) ? 'selected' : '' }}>
+                <label for="gtlm">GTLM</label>
+                <select name="gtlm" id="gtlm" class="form-control select2">
+                    @foreach($race->cars()->where('class', 'gtlm')->orderBy('car_number', 'ASC')->get() as $car)
+                    <option value="{{ $car->id }}" {{ (Auth::user()->getPrediction($race, 'gtlm') == $car->id) ? 'selected' : '' }}>
                         {{ $car->getInfo() }} ({{ $car->car }})
                         (@foreach(json_decode($car->drivers) as $driver){{ $driver}}{{ (!$loop->last) ? ', ' : '' }}@endforeach)
                     </option>
@@ -45,10 +45,10 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="gteam">GTE Am</label>
-                <select name="gteam" id="gteam" class="form-control select2">
-                    @foreach($race->cars()->where('class', 'gteam')->orderBy('car_number', 'ASC')->get() as $car)
-                    <option value="{{ $car->id }}" {{ (Auth::user()->getPrediction($race, 'gteam') == $car->id) ? 'selected' : '' }}>
+                <label for="gtd">GTD</label>
+                <select name="gtd" id="gtd" class="form-control select2">
+                    @foreach($race->cars()->where('class', 'gtd')->orderBy('car_number', 'ASC')->get() as $car)
+                    <option value="{{ $car->id }}" {{ (Auth::user()->getPrediction($race, 'gtd') == $car->id) ? 'selected' : '' }}>
                         {{ $car->getInfo() }} ({{ $car->car }})
                         (@foreach(json_decode($car->drivers) as $driver){{ $driver}}{{ (!$loop->last) ? ', ' : '' }}@endforeach)
                     </option>

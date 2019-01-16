@@ -19,6 +19,7 @@ class AuthController extends Controller
             'name' => $discord->nickname,
             'avatar' => $discord->avatar ?? null,
             'refresh_token' => $accessTokenResponseBody['refresh_token'],
+            'points' => 0,
         ]);
         \Auth::login($user, true);
         return redirect('/dashboard');

@@ -64,18 +64,18 @@
                     <table class="table">
                         <tr>
                             <td scope="col">User</td>
-                            <td scope="col">LMP1</td>
+                            <td scope="col">DPi</td>
                             <td scope="col">LMP2</td>
-                            <td scope="col">GTE Pro</td>
-                            <td scope="col">GTE Am</td>
+                            <td scope="col">GTELM</td>
+                            <td scope="col">GTD</td>
                         </tr>
                         @foreach($latest as $pick)
                         <tr>
                             <td><a href="/user/{{ $pick->user_id }}">{{ $pick->user->name }}</a></td>
-                            <td>#{{ $pick->lmp1->car_number }} {{ $pick->lmp1->name }}</td>
+                            <td>#{{ $pick->dpi->car_number }} {{ $pick->dpi->name }}</td>
                             <td>#{{ $pick->lmp2->car_number }} {{ $pick->lmp2->name }}</td>
-                            <td>#{{ $pick->gtepro->car_number }} {{ $pick->gtepro->name }}</td>
-                            <td>#{{ $pick->gteam->car_number }} {{ $pick->gteam->name }}</td>
+                            <td>#{{ $pick->gtelm->car_number }} {{ $pick->gtelm->name }}</td>
+                            <td>#{{ $pick->gtd->car_number }} {{ $pick->gtd->name }}</td>
                         </tr>
                         @endforeach
                     </table>
