@@ -29,23 +29,23 @@
 
                     <div id="{{ str_slug($prediction->race->name) }}" class="collapse" aria-labelledby="header_{{ str_slug($prediction->race->name) }}" data-parent="#predictions">
                         <div class="card-body">
-                            @if($prediction->lmp1)
+                            @if($prediction->dpi)
                             <div class="row">
                                 <div class="col-md-3">
-                                    <h3><span class="badge badge-danger">LMP1</span></h3>
-                                    <h4>{{ $prediction->lmp1->getInfo() }}</h4>
+                                    <h3><span class="badge badge-danger">DPi</span></h3>
+                                    <h4>{{ $prediction->dpi->getInfo() }}</h4>
                                 </div>
                                 <div class="col-md-3">
                                     <h3><span class="badge badge-danger">LMP2</span></h3>
                                     <h4>{{ $prediction->lmp2->getInfo() }}</h4>
                                 </div>
                                 <div class="col-md-3">
-                                    <h3><span class="badge badge-danger">GTE Pro</span></h3>
-                                    <h4>{{ $prediction->gtepro->getInfo() }}</h4>
+                                    <h3><span class="badge badge-danger">GTLM</span></h3>
+                                    <h4>{{ $prediction->gtlm->getInfo() }}</h4>
                                 </div>
                                 <div class="col-md-3">
-                                    <h3><span class="badge badge-danger">GTE Am</span></h3>
-                                    <h4>{{ $prediction->gteam->getInfo() }}</h4>
+                                    <h3><span class="badge badge-danger">GTD</span></h3>
+                                    <h4>{{ $prediction->gtd->getInfo() }}</h4>
                                 </div>
                             </div>
                             @endif

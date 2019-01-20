@@ -16,7 +16,7 @@
                 <h4>#{{ $most_picked['gtlm']->car_number  }} {{ $most_picked['gtlm']->name }}</h4>
             </div>
             <div class="col-md-3">
-                <h3><span class="badge badge-danger">GTED</span></h3>
+                <h3><span class="badge badge-danger">GTD</span></h3>
                 <h4>#{{ $most_picked['gtd']->car_number  }} {{ $most_picked['gtd']->name }}</h4>
             </div>
         </div>
