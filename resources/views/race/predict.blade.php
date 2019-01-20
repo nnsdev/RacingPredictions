@@ -66,7 +66,7 @@
                             <td scope="col">User</td>
                             <td scope="col">DPi</td>
                             <td scope="col">LMP2</td>
-                            <td scope="col">GTELM</td>
+                            <td scope="col">GTLM</td>
                             <td scope="col">GTD</td>
                         </tr>
                         @foreach($latest as $pick)
@@ -74,7 +74,7 @@
                             <td><a href="/user/{{ $pick->user_id }}">{{ $pick->user->name }}</a></td>
                             <td>#{{ $pick->dpi->car_number }} {{ $pick->dpi->name }}</td>
                             <td>#{{ $pick->lmp2->car_number }} {{ $pick->lmp2->name }}</td>
-                            <td>#{{ $pick->gtelm->car_number }} {{ $pick->gtelm->name }}</td>
+                            <td>#{{ $pick->gtlm->car_number }} {{ $pick->gtlm->name }}</td>
                             <td>#{{ $pick->gtd->car_number }} {{ $pick->gtd->name }}</td>
                         </tr>
                         @endforeach
