@@ -41,7 +41,7 @@ class Prediction extends Model
     public static function getFinishingPositions(Race $race, User $user)
     {
         $prediction = self::where(['user_id' => $user->id, 'race_id' => $race->id])->first();
-        if(!$prediction) {
+        if (!$prediction) {
             return null;
         }
         return [
@@ -57,7 +57,7 @@ class Prediction extends Model
     {
         collect(self::where('race_id', $race->id)->get())->each(function ($prediction) use ($race) {
             $points = self::pointAmount($race->cars()->where('car_id', $prediction->dpi_id)->firstOrFail()->pivot->position);
-            $points += self::pointAmount($race->cars()->where('car_id', $prediction->lmp2_id)->firstOrFail()->pivot->position);
+            $points += self::pointAmountLMP2($race->cars()->where('car_id', $prediction->lmp2_id)->firstOrFail()->pivot->position);
             $points += self::pointAmount($race->cars()->where('car_id', $prediction->gtlm_id)->firstOrFail()->pivot->position);
             $points += self::pointAmount($race->cars()->where('car_id', $prediction->gtd_id)->firstOrFail()->pivot->position);
             $prediction->update(['points' => $points]);
@@ -67,17 +67,38 @@ class Prediction extends Model
     public static function pointAmount($num)
     {
         switch ($num) {
-            case 1: return 100;
-            case 2: return 80;
-            case 3: return 60;
-            case 4: return 40;
-            case 5: return 20;
-            case 6: return 10;
-            case 7: return 7;
-            case 8: return 5;
-            case 9: return 3;
-            case 10: return 1;
-            default: return 0;
+            case 1:
+                return 100;
+            case 2:
+                return 80;
+            case 3:
+                return 60;
+            case 4:
+                return 40;
+            case 5:
+                return 20;
+            case 6:
+                return 10;
+            case 7:
+                return 7;
+            case 8:
+                return 5;
+            case 9:
+                return 3;
+            case 10:
+                return 1;
+            default:
+                return 0;
         }
+    }
+
+    public static function pointAmountLMP2($num) {
+        if ($num == 1) {
+            return 50;
+        }
+        if ($num == 2) {
+            return 25;
+        }
+        return 0;
     }
 }
