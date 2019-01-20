@@ -21,9 +21,9 @@ class CreatePredictionsTable extends Migration
             $table->integer('lmp2_id')->unsigned();
             $table->foreign('lmp2_id')->references('id')->on('cars');
             $table->boolean('lmp2_correct')->default(false);
-            $table->integer('gtelm_id')->unsigned();
-            $table->foreign('gtelm_id')->references('id')->on('cars');
-            $table->boolean('gtelm_correct')->default(false);
+            $table->integer('gtlm_id')->unsigned();
+            $table->foreign('gtlm_id')->references('id')->on('cars');
+            $table->boolean('gtlm_correct')->default(false);
             $table->integer('gtd_id')->unsigned();
             $table->foreign('gtd_id')->references('id')->on('cars');
             $table->boolean('gtd_correct')->default(false);

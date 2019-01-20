@@ -18,7 +18,7 @@ class Prediction extends Model
         return $this->belongsTo(Race::class);
     }
 
-    public function lmp1()
+    public function dpi()
     {
         return $this->belongsTo(Car::class);
     }
@@ -28,12 +28,12 @@ class Prediction extends Model
         return $this->belongsTo(Car::class);
     }
 
-    public function gtepro()
+    public function gtlm()
     {
         return $this->belongsTo(Car::class);
     }
 
-    public function gteam()
+    public function gtd()
     {
         return $this->belongsTo(Car::class);
     }

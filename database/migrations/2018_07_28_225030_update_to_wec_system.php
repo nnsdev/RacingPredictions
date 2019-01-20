@@ -19,7 +19,7 @@ class UpdateToWecSystem extends Migration
             $table->integer('points')->after('user_id')->default(0);
             $table->dropColumn('dpi_correct');
             $table->dropColumn('lmp2_correct');
-            $table->dropColumn('gtelm_correct');
+            $table->dropColumn('gtlm_correct');
             $table->dropColumn('gtd_correct');
 
         });
@@ -47,7 +47,7 @@ class UpdateToWecSystem extends Migration
             $table->dropColumn('points');
             $table->boolean('dpi_correct')->default(false);
             $table->boolean('lmp2_correct')->default(false);
-            $table->boolean('gtelm_correct')->default(false);
+            $table->boolean('gtlm_correct')->default(false);
             $table->boolean('gtd_correct')->default(false);
         });
         Schema::table('users', function (Blueprint $table) {
