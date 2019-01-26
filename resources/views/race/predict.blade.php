@@ -18,7 +18,7 @@
             @if(now()->lessThan($race->race_start))
                 @include('partials.prediction')
             @else
-            <div class="card">
+            <div class="card rounded-0 text-white bg-dark">
                 <div class="card-header">
                     Top 10
                 </div>
@@ -30,7 +30,7 @@
             @include('partials.most_picked')
         </div>
         <div class="col-md-6 px-5">
-            <div class="card">
+            <div class="card rounded-0 text-white bg-dark">
                 <div class="card-header">Search for User</div>
                 <div class="card-body">
                     @if(Session::has('error'))
@@ -38,19 +38,19 @@
                         {{ Session::pull('error') }}
                     </div>
                     @endif
-                    <form action="/dashboard/search" method="POST">
+                    <form action="/user/search" method="POST">
                         @csrf
                         <div class="form-group">
                             <input type="text" name="search" class="form-control" placeholder="Search for user">
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-secondary btn-block" value="Search">
+                            <input type="submit" class="btn btn-primary btn-block" value="Search">
                         </div>
                     </form>
                 </div>
             </div>
             @if(now()->greaterThan($race->race_start) && now()->lessThan($race->race_end))
-            <div class="card mt-1">
+            <div class="card rounded-0 text-white bg-dark mt-1">
                 <div class="card-header">Live Data</div>
                 <div class="card-body">
                     <standings race="{{ $race->id }}"></standings>
@@ -58,7 +58,7 @@
             </div>
             @endif
             @if(now()->lessThan($race->race_start))
-            <div class="card mt-1">
+            <div class="card rounded-0 text-white bg-dark mt-1">
                 <div class="card-header">Latest 5 Picks</div>
                 <div class="card-body">
                     <table class="table">

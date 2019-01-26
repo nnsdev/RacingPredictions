@@ -7,7 +7,7 @@
             <div class="list-group">
                 @foreach($races as $race)
                 @if($race->race_start != null && now()->greaterThan($race->race_end))
-                    <a href="/race/{{ $race->id }}/results" class="list-group-item list-group-item-action disabled">
+                    <a href="/race/{{ $race->id }}/results" class="list-group-item list-group-item-action disabled list-group-item-dark">
                         {{ $race->name }}
                     </a>
                 @elseif(now()->greaterThan($race->race_start) && now()->lessThan($race->race_end))
@@ -15,7 +15,7 @@
                     <strong>LIVE:</strong> {{ $race->name }}
                 </a>
                 @elseif($race->race_start != null && now()->greaterThan($race->race_start->subWeek()) && now()->lessThan($race->race_end))
-                <a href="/race/{{ $race->id }}" class="list-group-item list-group-item-action active">{{ $race->name }}</a>
+                <a href="/race/{{ $race->id }}" class="list-group-item list-group-item-action active list-group-item-dark">{{ $race->name }}</a>
                 @else
                     <a href="#" class="list-group-item list-group-item-action disabled">
                         <strong>Upcoming:</strong> {{ $race->name }} @if($race->race_start) ({{ $race->race_start }}) @endif

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function search(Request $request)
+    public function postSearch(Request $request)
     {
         $request->validate(['search' => 'required']);
 

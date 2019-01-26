@@ -4,7 +4,7 @@
 <div class="container-lg py-5">
     <div class="row">
         <div class="col-md-2 px-5">
-            <div class="card">
+            <div class="card rounded-0 text-white bg-dark">
                 <div class="card-body text-center">
                     @if($user->avatar)
                         <img src="{{ $user->avatar }}" alt="{{ $user->name }}">
@@ -18,7 +18,7 @@
             <h1>Picks</h1>
             <div class="accordion" id="predictions">
                 @foreach($predictions as $prediction)
-                <div class="card">
+                <div class="card rounded-0 text-white bg-dark">
                     <div class="card-header" id="header_{{ str_slug($prediction->race->name) }}">
                         <h5 class="mb-0">
                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ str_slug($prediction->race->name) }}" aria-expanded="false" aria-controls="collapseOne">

@@ -1,4 +1,4 @@
-<div class="card mt-1">
+<div class="card rounded-0 text-white bg-dark mt-1">
     <div class="card-header">Most favorite teams</div>
     <div class="card-body">
         @if($most_picked['dpi'])

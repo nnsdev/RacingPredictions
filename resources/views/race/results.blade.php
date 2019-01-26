@@ -4,7 +4,7 @@
 <div class="container-lg py-5">
     <div class="row">
         <div class="col-md-12 px-5">
-            <div class="card">
+            <div class="card rounded-0 text-white bg-darke">
                 <div class="card-header">
                     Results for {{ $race->name }}
                 </div>
@@ -64,7 +64,7 @@
                             @endif
                             @foreach($users as $user)
                             <tr>
-                                <th scope="row">{{ ($users->currentPage() -1) * 100 + ($loop->index + 1) }}</th>
+                                <th scope="row">{{ ($users->currentPage() -1) * 50 + ($loop->index + 1) }}</th>
                                 <td><a href="/user/{{ $user->user->id }}">{{ $user->user->name }}</a></td>
                                 @php $positions = \App\Models\Prediction::getFinishingPositions($race, $user->user); @endphp
                                 <td>

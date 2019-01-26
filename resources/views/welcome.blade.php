@@ -13,14 +13,14 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6 mx-auto">
-                        <div class="card rounded-0">
+                        <div class="card rounded-0 text-white bg-dark">
                             <div class="card-header">
                                 <h3 class="mb-0">Login</h3>
                             </div>
                             <div class="card-body text-center">
                                 <a href="/auth" class="btn btn-block btn-info btn-lg">Login through Discord</a>
-                                <a href="https://craigsetupshop.co.uk" class="btn" target="_blank">Sponsored by Craig's Setup Shop</a> &middot;
-                                <a href="/privacy" class="btn" target="_blank">Privacy</a>
+                                <a href="https://craigsetupshop.co.uk" class="btn text-white" target="_blank">Sponsored by Craig's Setup Shop</a> &middot;
+                                <a href="/privacy" class="btn text-white" target="_blank">Privacy</a>
                             </div>
                         </div>
                     </div>

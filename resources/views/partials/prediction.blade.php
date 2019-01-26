@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card rounded-0 text-white bg-dark">
     <div class="card-header">
         Pick your Teams
     </div>

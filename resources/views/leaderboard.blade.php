@@ -4,7 +4,7 @@
 <div class="container-lg py-5">
     <div class="row">
         <div class="col-md-12 px-5">
-            <div class="card">
+            <div class="card rounded-0 text-white bg-dark">
                 <div class="card-header">
                     Leaderboard
                 </div>
