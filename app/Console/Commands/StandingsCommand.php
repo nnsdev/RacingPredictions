@@ -51,7 +51,7 @@ class StandingsCommand extends Command
                 if ($db) {
                     $race->cars()->updateExistingPivot($db->id, [
                         'position' => $car->PIC ?? "?",
-                        'state' => ($car->P == 1) ? "IN" : "??",
+                        'state' => ($car->P == 1) ? "IN PITS" : "OUT",
                         'current_driver' => $car->F ?? "-",
                         'gap_to_leader' => ($car->DIC == "--.---") ? "-" : $car->DIC,
                         'last_lap' => $car->LL ?? "?",
