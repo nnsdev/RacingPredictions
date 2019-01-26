@@ -45,10 +45,10 @@ class Prediction extends Model
             return null;
         }
         return [
-            'lmp1' => $race->cars()->where('car_id', $prediction->dpi_id)->firstOrFail()->pivot->position,
+            'dpi' => $race->cars()->where('car_id', $prediction->dpi_id)->firstOrFail()->pivot->position,
             'lmp2' => $race->cars()->where('car_id', $prediction->lmp2_id)->firstOrFail()->pivot->position,
-            'gtepro' => $race->cars()->where('car_id', $prediction->gtlm_id)->firstOrFail()->pivot->position,
-            'gteam' => $race->cars()->where('car_id', $prediction->gtd_id)->firstOrFail()->pivot->position,
+            'gtlm' => $race->cars()->where('car_id', $prediction->gtlm_id)->firstOrFail()->pivot->position,
+            'gtd' => $race->cars()->where('car_id', $prediction->gtd_id)->firstOrFail()->pivot->position,
             'points' => $prediction->points,
         ];
     }

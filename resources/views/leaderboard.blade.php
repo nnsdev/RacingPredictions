@@ -29,7 +29,7 @@
                                     @endif
                                     @foreach($users as $user)
                                     <tr>
-                                        <th scope="row">{{ ($users->currentPage() -1) * 100 + ($loop->index + 1) }}</th>
+                                        <th scope="row">{{ ($users->currentPage() -1) * 50 + ($loop->index + 1) }}</th>
                                         <td><a href="/user/{{ $user->id }}">{{ $user->name }}</a></td>
                                         <td>{{ ($user->predictions()->count() > 0) ? $user->points : 0 }}</td>
                                     </tr>
