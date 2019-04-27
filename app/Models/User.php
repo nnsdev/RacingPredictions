@@ -28,28 +28,4 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function predictions()
-    {
-        return $this->hasMany(Prediction::class);
-    }
-
-    public function getPrediction(Race $race, $class)
-    {
-        $prediction = $this->predictions()->where('race_id', $race->id)->first();
-        if(!$prediction) {
-            return 0;
-        }
-        return $prediction->{$class}->id;
-    }
-
-    public static function calculatePoints()
-    {
-        collect(self::all())->map(function ($user) {
-            return ['user' => $user, 'points' => collect($user->predictions()->where('race_id', '<', getenv('RACE_ID'))->get())->map(function ($prediction) {
-                return $prediction->points;
-            })->sum()];
-        })->each(function ($user) {
-            $user['user']->update(['points' => $user['points']]);
-        });
-    }
 }

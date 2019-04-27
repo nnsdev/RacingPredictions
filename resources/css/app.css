@@ -1,0 +1,20 @@
+@import "tailwindcss/preflight";
+
+/* Add custom base styles here... */
+
+@import "tailwindcss/components";
+
+/* Add custom components here... */
+
+@import "tailwindcss/utilities";
+
+/* Add custom utilities here... */
+.bg-black-alt  {
+    background:#191919;
+}
+.text-black-alt  {
+    color:#191919;
+}
+.border-black-alt {
+    border-color: #191919;
+}

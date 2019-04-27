@@ -4,30 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Le Mans Bets</title>
-    <link href="/css/app.css" type="text/css" rel="stylesheet">
+    <title>Race Predictions</title>
+    <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet">
 </head>
-<body>
-    <div class="container py-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-6 mx-auto">
-                        <div class="card rounded-0">
-                            <div class="card-header">
-                                <h3 class="mb-0">Login</h3>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="/auth" class="btn btn-block btn-info btn-lg">Login through Discord</a>
-                                <a href="https://craigsetupshop.co.uk" class="btn" target="_blank">Sponsored by Craig's Setup Shop</a> &middot;
-                                <a href="/privacy" class="btn" target="_blank">Privacy</a>
-                            </div>
-                        </div>
-                    </div>
+<body class="bg-black-alt font-sans leading-normal tracking-normal">
+
+    <div class="container mx-auto">
+        <div class="flex justify-center">
+            <div class="mt-8 w-1/2 bg-black border-grey p-5 text-white text-center">
+                <h3 class="mb-4">Login to Race Predictions</h3>
+                <a href="/auth" class="bg-black-alt w-full py-2 px-8 text-white no-underline text-center hover:bg-grey-darkest">
+                    Login with Discord
+                </a><br>
+                <div class="mt-12 text-xs">
+                    <a href="/privacy" class="text-white">Privacy</a> &middot; Sponsored by <a href="https://craigsetupshop.co.uk" target="_blank" class="text-white">Craig's Setup Shop</a>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/js/app.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

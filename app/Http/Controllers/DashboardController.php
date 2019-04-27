@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Race;
-use App\Prediction;
 use App\User;
+use App\Prediction;
+use App\Models\Race;
+use App\Models\Series;
 
 class DashboardController extends Controller
 {
 
     public function index()
     {
-        return view('dashboard', ['races' => Race::all()]);
+        return view('dashboard', [
+            'upcoming' => Race::where('starts_at', '>', now())->orderBy('starts_at', 'ASC')->take(5)->get(),
+            'series' => Series::with('races')->get(),
+        ]);
     }
     public function race()
     {

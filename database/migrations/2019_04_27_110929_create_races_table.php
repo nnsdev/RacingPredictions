@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateRacesTable extends Migration
 {
@@ -14,10 +14,13 @@ class CreateRacesTable extends Migration
     public function up()
     {
         Schema::create('races', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->timestamp('race_start')->nullable();
-            $table->timestamp('race_end')->nullable();
+            $table->timestamp('starts_at');
+            $table->string('state')->nullable();
+            $table->boolean('is_finished')->default(false);
+            $table->bigInteger('series_id')->unsigned();
+            $table->foreign('series_id')->references('id')->on('series');
             $table->timestamps();
         });
     }
