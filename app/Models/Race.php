@@ -28,6 +28,8 @@ class Race extends Model
             $this->attributes['state'] = "Green Flag"; 
         } elseif ($value == 'safety_car') {
             $this->attributes['state'] = "Safety Car";
+        } elseif($value == 'full_yellow') {
+            $this->attributes['state'] = "FCY";
         } else {
             $this->attributes['state'] = "Checkered Flag";
         }
