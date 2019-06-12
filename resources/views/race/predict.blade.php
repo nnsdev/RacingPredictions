@@ -38,7 +38,7 @@
                         {{ Session::pull('error') }}
                     </div>
                     @endif
-                    <form action="/dashboard/search" method="POST">
+                    <form action="/user/search" method="POST">
                         @csrf
                         <div class="form-group">
                             <input type="text" name="search" class="form-control" placeholder="Search for user">

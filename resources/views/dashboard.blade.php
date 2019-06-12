@@ -14,12 +14,8 @@
                 <a href="/race/{{ $race->id }}" class="list-group-item list-group-item-action list-group-item-success">
                     <strong>LIVE:</strong> {{ $race->name }}
                 </a>
-                @elseif($race->race_start != null && now()->greaterThan($race->race_start->subWeek()) && now()->lessThan($race->race_end))
-                <a href="/race/{{ $race->id }}" class="list-group-item list-group-item-action active">{{ $race->name }}</a>
                 @else
-                    <a href="#" class="list-group-item list-group-item-action disabled">
-                        <strong>Upcoming:</strong> {{ $race->name }} @if($race->race_start) ({{ $race->race_start }}) @endif
-                    </a>
+                <a href="/race/{{ $race->id }}" class="list-group-item list-group-item-action active">{{ $race->name }} ({{ $race->race_start }})</a>
                 @endif
                 @endforeach
             </div>
