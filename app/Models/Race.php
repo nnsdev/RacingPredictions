@@ -22,15 +22,25 @@ class Race extends Model
 
     public function setStateAttribute($value)
     {
-        if($value == 'red') {
+        if ($value == 'red') {
             $this->attributes['state'] = "Red Flag";
-        } elseif($value == 'green') {
+        } elseif ($value == 'green') {
             $this->attributes['state'] = "Green Flag"; 
-        } elseif($value == 'safety_car') {
+        } elseif ($value == 'safety_car') {
             $this->attributes['state'] = "Safety Car";
         } else {
             $this->attributes['state'] = "Checkered Flag";
         }
+    }
+
+    public function setInfoAttribute($value)
+    {
+        $this->attributes['info'] = json_encode($value);
+    }
+
+    public function getInfoAttribute($value)
+    {
+        return json_decode($value);
     }
 
     public function getMostPicked()

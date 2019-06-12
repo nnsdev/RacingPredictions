@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:api'], function () {
             ],
             'remaining' => gmdate('H:i:s', $race->race_end->diffInSeconds(now())),
             'state' => $race->state,
+            'info' => $race->info,
             'last_update' => now()->format("H:i:s"),
             'points' => $prediction->points,
         ]);

@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container-lg py-3">
-    <div class="row px-4">
-        <div class="col-md-12">
+    <div class="row mr-0">
+        <div class="col-lg-12">
             @if($errors->any())
             <div class="alert alert-danger">
                 @foreach($errors->all() as $error)
@@ -13,8 +13,8 @@
             @endif
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 px-5">
+    <div class="row mr-0">
+        <div class="col-lg-4 ml-2">
             @if(now()->lessThan($race->race_start))
                 @include('partials.prediction')
             @else
@@ -29,8 +29,8 @@
             @endif
             @include('partials.most_picked')
         </div>
-        <div class="col-md-6 px-5">
-            <div class="card">
+        <div class="col-lg-7 ml-2">
+            <div class="card mt-2">
                 <div class="card-header">Search for User</div>
                 <div class="card-body">
                     @if(Session::has('error'))
@@ -50,12 +50,7 @@
                 </div>
             </div>
             @if(now()->greaterThan($race->race_start) && now()->lessThan($race->race_end))
-            <div class="card mt-1">
-                <div class="card-header">Live Data</div>
-                <div class="card-body">
-                    <standings race="{{ $race->id }}"></standings>
-                </div>
-            </div>
+                <standings race="{{ $race->id }}"></standings>
             @endif
             @if(now()->lessThan($race->race_start))
             <div class="card mt-1">
