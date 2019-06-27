@@ -65,16 +65,20 @@
                         <tr>
                             <td scope="col">User</td>
                             <td scope="col">DPi</td>
+                            @if($race->id != 3)
                             <td scope="col">LMP2</td>
                             <td scope="col">GTLM</td>
+                            @endif
                             <td scope="col">GTD</td>
                         </tr>
                         @foreach($latest as $pick)
                         <tr>
                             <td><a href="/user/{{ $pick->user_id }}">{{ $pick->user->name }}</a></td>
                             <td>#{{ $pick->dpi->car_number }} {{ $pick->dpi->name }}</td>
+                            @if($race->id != 3)
                             <td>#{{ $pick->lmp2->car_number }} {{ $pick->lmp2->name }}</td>
                             <td>#{{ $pick->gtlm->car_number }} {{ $pick->gtlm->name }}</td>
+                            @endif
                             <td>#{{ $pick->gtd->car_number }} {{ $pick->gtd->name }}</td>
                         </tr>
                         @endforeach

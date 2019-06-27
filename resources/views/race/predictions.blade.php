@@ -14,8 +14,10 @@
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">DPi</th>
+                                @if($race->id != 3)
                                 <th scope="col">LMP2</th>
                                 <th scope="col">GTLM</th>
+                                @endif
                                 <th scope="col">GTD</th>
                             </tr>
                         </thead>
@@ -24,8 +26,10 @@
                             <tr>
                                 <td><a href="/user/{{ $user->user_id }}">{{ $user->user->name }}</a></td>
                                 <td>{{ $user->dpi->getInfo() }}</td>
+                                @if($race->id != 3)
                                 <td>{{ $user->lmp2->getInfo() }}</td>
                                 <td>{{ $user->gtlm->getInfo() }}</td>
+                                @endif
                                 <td>{{ $user->gtd->getInfo() }}</td>
                             </tr>
                             @endforeach

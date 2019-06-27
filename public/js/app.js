@@ -37238,53 +37238,57 @@ var render = function() {
               _c("td", [_vm._v(_vm._s(_vm.standings.dpi.pivot.last_lap))])
             ]),
             _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.pivot.position))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.team))]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(_vm._s(_vm.standings.lmp2.pivot.current_driver))
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  _vm._s(
-                    _vm.standings.lmp2.pivot.position == "1"
-                      ? "-"
-                      : _vm.standings.lmp2.pivot.gap_to_leader
-                  )
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.pivot.state))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.pivot.last_lap))])
-            ]),
+            _vm.race == 1
+              ? _c("tr", [
+                  _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.pivot.position))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.team))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.standings.lmp2.pivot.current_driver))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.standings.lmp2.pivot.position == "1"
+                          ? "-"
+                          : _vm.standings.lmp2.pivot.gap_to_leader
+                      )
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.pivot.state))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.standings.lmp2.pivot.last_lap))])
+                ])
+              : _vm._e(),
             _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v(_vm._s(_vm.standings.gtlm.pivot.position))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.gtlm.team))]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(_vm._s(_vm.standings.gtlm.pivot.current_driver))
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  _vm._s(
-                    _vm.standings.gtlm.pivot.position == "1"
-                      ? "-"
-                      : _vm.standings.gtlm.pivot.gap_to_leader
-                  )
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.gtlm.pivot.state))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm.standings.gtlm.pivot.last_lap))])
-            ]),
+            _vm.race == 1
+              ? _c("tr", [
+                  _c("td", [_vm._v(_vm._s(_vm.standings.gtlm.pivot.position))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.standings.gtlm.team))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(_vm._s(_vm.standings.gtlm.pivot.current_driver))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.standings.gtlm.pivot.position == "1"
+                          ? "-"
+                          : _vm.standings.gtlm.pivot.gap_to_leader
+                      )
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.standings.gtlm.pivot.state))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.standings.gtlm.pivot.last_lap))])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("tr", [
               _c("td", [_vm._v(_vm._s(_vm.standings.gtd.pivot.position))]),

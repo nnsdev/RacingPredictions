@@ -22,6 +22,7 @@
                     @endforeach
                 </select>
             </div>
+            @if($race->id != 3)
             <div class="form-group">
                 <label for="lmp2">LMP2</label>
                 <select name="lmp2" id="lmp2" class="form-control select2">
@@ -44,6 +45,7 @@
                     @endforeach
                 </select>
             </div>
+            @endif
             <div class="form-group">
                 <label for="gtd">GTD</label>
                 <select name="gtd" id="gtd" class="form-control select2">

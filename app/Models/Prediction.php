@@ -44,10 +44,17 @@ class Prediction extends Model
         if (!$prediction) {
             return null;
         }
+        if ($race->id != 3) {
+            return [
+                'dpi' => $race->cars()->where('car_id', $prediction->dpi_id)->firstOrFail()->pivot->position,
+                'lmp2' => $race->cars()->where('car_id', $prediction->lmp2_id)->firstOrFail()->pivot->position,
+                'gtlm' => $race->cars()->where('car_id', $prediction->gtlm_id)->firstOrFail()->pivot->position,
+                'gtd' => $race->cars()->where('car_id', $prediction->gtd_id)->firstOrFail()->pivot->position,
+                'points' => $prediction->points,
+            ];
+        }
         return [
             'dpi' => $race->cars()->where('car_id', $prediction->dpi_id)->firstOrFail()->pivot->position,
-            'lmp2' => $race->cars()->where('car_id', $prediction->lmp2_id)->firstOrFail()->pivot->position,
-            'gtlm' => $race->cars()->where('car_id', $prediction->gtlm_id)->firstOrFail()->pivot->position,
             'gtd' => $race->cars()->where('car_id', $prediction->gtd_id)->firstOrFail()->pivot->position,
             'points' => $prediction->points,
         ];
@@ -57,8 +64,10 @@ class Prediction extends Model
     {
         collect(self::where('race_id', $race->id)->get())->each(function ($prediction) use ($race) {
             $points = self::pointAmount($race->cars()->where('car_id', $prediction->dpi_id)->firstOrFail()->pivot->position);
-            $points += self::pointAmountLMP2($race->cars()->where('car_id', $prediction->lmp2_id)->firstOrFail()->pivot->position);
-            $points += self::pointAmount($race->cars()->where('car_id', $prediction->gtlm_id)->firstOrFail()->pivot->position);
+            if ($race->id != 3) {
+                $points += self::pointAmountLMP2($race->cars()->where('car_id', $prediction->lmp2_id)->firstOrFail()->pivot->position);
+                $points += self::pointAmount($race->cars()->where('car_id', $prediction->gtlm_id)->firstOrFail()->pivot->position);
+            }
             $points += self::pointAmount($race->cars()->where('car_id', $prediction->gtd_id)->firstOrFail()->pivot->position);
             $prediction->update(['points' => $points]);
         });
