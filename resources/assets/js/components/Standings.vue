@@ -29,7 +29,7 @@
                 <td>{{ standings.dpi.pivot.state }}</td>
                 <td>{{ standings.dpi.pivot.last_lap }}</td>
             </tr>
-            <tr v-if="race !== 3">
+            <tr>
                 <td>{{ standings.lmp2.pivot.position }}</td>
                 <td>{{ standings.lmp2.team }}</td>
                 <td>{{ standings.lmp2.pivot.current_driver }}</td>
@@ -37,7 +37,7 @@
                 <td>{{ standings.lmp2.pivot.state }}</td>
                 <td>{{ standings.lmp2.pivot.last_lap }}</td>
             </tr>
-            <tr v-if="race !== 3">
+            <tr>
                 <td>{{ standings.gtlm.pivot.position }}</td>
                 <td>{{ standings.gtlm.team }}</td>
                 <td>{{ standings.gtlm.pivot.current_driver }}</td>

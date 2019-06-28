@@ -7,7 +7,6 @@
                 <h3><span class="badge badge-danger">DPi</span></h3>
                 <h4>#{{ $most_picked['dpi']->car_number  }} {{ $most_picked['dpi']->name }}</h4>
             </div>
-            @if($race->id != 3)
             <div class="col-md-3">
                 <h3><span class="badge badge-danger">LMP2</span></h3>
                 <h4>#{{ $most_picked['lmp2']->car_number  }} {{ $most_picked['lmp2']->name }}</h4>
@@ -16,7 +15,6 @@
                 <h3><span class="badge badge-danger">GTLM</span></h3>
                 <h4>#{{ $most_picked['gtlm']->car_number  }} {{ $most_picked['gtlm']->name }}</h4>
             </div>
-            @endif
             <div class="col-md-3">
                 <h3><span class="badge badge-danger">GTD</span></h3>
                 <h4>#{{ $most_picked['gtd']->car_number  }} {{ $most_picked['gtd']->name }}</h4>

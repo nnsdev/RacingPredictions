@@ -15,10 +15,8 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">DPi Correct</th>
-                                @if($race->id != 3)
                                 <th scope="col">LMP2 Correct</th>
                                 <th scope="col">GTLM Correct</th>
-                                @endif
                                 <th scope="col">GTD Correct</th>
                                 <th scope="col">Points</th>
                             </tr>
@@ -37,7 +35,6 @@
                                         <small>({{ $positions["dpi"] }})</small>
                                     @endif
                                 </td>
-                                @if($race->id != 3)
                                 <td>
                                     @if($positions["lmp2"] == 1)
                                         <span style="color: green">✓</span>
@@ -54,7 +51,6 @@
                                         <small>({{ $positions["gtlm"] }})</small>
                                     @endif
                                 </td>
-                                @endif
                                 <td>
                                     @if($positions["gtd"] == 1)
                                         <span style="color: green">✓</span>
@@ -79,7 +75,6 @@
                                         <small>({{ $positions["dpi"] }})</small>
                                     @endif
                                 </td>
-                                @if($race->id != 3)
                                 <td>
                                     @if($positions["lmp2"] == 1)
                                         <span style="color: green">✓</span>
@@ -96,7 +91,6 @@
                                         <small>({{ $positions["gtlm"] }})</small>
                                     @endif
                                 </td>
-                                @endif
                                 <td>
                                     @if($positions["gtd"] == 1)
                                         <span style="color: green">✓</span>

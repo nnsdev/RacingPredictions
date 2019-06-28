@@ -35,7 +35,6 @@
                                     <h3><span class="badge badge-danger">DPi</span></h3>
                                     <h4>{{ $prediction->dpi->getInfo() }}</h4>
                                 </div>
-                                @if($race->id != 3)
                                 <div class="col-md-3">
                                     <h3><span class="badge badge-danger">LMP2</span></h3>
                                     <h4>{{ $prediction->lmp2->getInfo() }}</h4>
@@ -44,7 +43,6 @@
                                     <h3><span class="badge badge-danger">GTLM</span></h3>
                                     <h4>{{ $prediction->gtlm->getInfo() }}</h4>
                                 </div>
-                                @endif
                                 <div class="col-md-3">
                                     <h3><span class="badge badge-danger">GTD</span></h3>
                                     <h4>{{ $prediction->gtd->getInfo() }}</h4>

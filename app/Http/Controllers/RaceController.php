@@ -38,31 +38,21 @@ class RaceController extends Controller
     public function postIndex(Race $race, Request $request)
     {
         if (now()->lessThan($race->race_start)) {
-            if ($race->id != 3) {
-                $request->validate([
-                    'dpi' => 'required',
-                    'lmp2' => 'required',
-                    'gtlm' => 'required',
-                    'gtd' => 'required',
-                ]);
-                $lmp2 = Car::where(['class' => 'lmp2', 'id' => $request->get('lmp2')])->firstOrFail();
-                $gtlm = Car::where(['class' => 'gtlm', 'id' => $request->get('gtlm')])->firstOrFail();
-            } else {
-                $request->validate([
-                    'dpi' => 'required',
-                    'gtd' => 'required',
-                ]);
-                $lmp2 = null;
-                $gtlm = null;
-            }
-
+            $request->validate([
+                'dpi' => 'required',
+                'lmp2' => 'required',
+                'gtlm' => 'required',
+                'gtd' => 'required',
+            ]);
+            $lmp2 = Car::where(['class' => 'lmp2', 'id' => $request->get('lmp2')])->firstOrFail();
+            $gtlm = Car::where(['class' => 'gtlm', 'id' => $request->get('gtlm')])->firstOrFail();
             $dpi = Car::where(['class' => 'dpi', 'id' => $request->get('dpi')])->firstOrFail();
             $gtd = Car::where(['class' => 'gtd', 'id' => $request->get('gtd')])->firstOrFail();
 
             $prediction = $race->predictions()->updateOrCreate(['user_id' => \Auth::user()->id], [
                 'dpi_id' => $dpi->id,
-                'lmp2_id' => optional($lmp2)->id,
-                'gtlm_id' => optional($gtlm)->id,
+                'lmp2_id' => $lmp2->id,
+                'gtlm_id' => $gtlm->id,
                 'gtd_id' => $gtd->id,
             ]);
 
